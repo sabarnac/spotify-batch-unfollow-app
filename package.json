@@ -3,10 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
+    "@types/jest": "24.0.18",
+    "@types/node": "12.7.8",
+    "@types/react": "16.9.3",
+    "@types/react-dom": "16.9.1",
+    "@types/react-router-dom": "^5.1.0",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-oauth2-hook": "^1.0.12",
+    "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2",
-    "react-use-auth": "^0.4.3"
+    "react-storage-hook": "1.0.2",
+    "typescript": "3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",
