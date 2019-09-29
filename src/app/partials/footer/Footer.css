@@ -1,0 +1,19 @@
+div.site.footer {
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 6rem;
+}
+
+div.site.footer .item {
+  padding: 0 1rem;
+  font-size: 1.3rem;
+  border-right: 1px solid #eeeeee;
+}
+
+div.site.footer .item:last-child {
+  border-right: none;
+}

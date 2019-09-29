@@ -1,0 +1,8 @@
+div.site.header {
+  padding: 1rem;
+}
+
+div.site.header h1 {
+  margin: 0;
+  text-align: center;
+}

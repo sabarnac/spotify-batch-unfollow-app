@@ -1,13 +1,11 @@
 import React from "react"
 
 interface InitialContextType {
-  spotifyApiUrl: string
   token?: string
+  resetToken?: Function
 }
 
-export const InitialContext: InitialContextType = {
-  spotifyApiUrl: "https://api.spotify.com/v1",
-}
+export const InitialContext: InitialContextType = {}
 
 const SpotifyContext = React.createContext(InitialContext)
 
