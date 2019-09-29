@@ -8,6 +8,8 @@
     "@types/react": "16.9.3",
     "@types/react-dom": "16.9.1",
     "@types/react-router-dom": "^5.1.0",
+    "array-chunk": "^1.0.0",
+    "fetch-retry": "^2.2.3",
     "immutable": "^4.0.0-rc.12",
     "prop-types": "^15.7.2",
     "react": "^16.10.1",
