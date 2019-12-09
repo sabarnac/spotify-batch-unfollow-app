@@ -2,28 +2,28 @@
  * Class for describing a fetch error details.
  */
 export class FetchError {
-  private _status: number
-  private _body: string
-  private _headers: Headers
+  private _status: number;
+  private _body: string;
+  private _headers: Headers;
 
   constructor(status: number, body: string, headers: Headers) {
-    this._status = status
-    this._body = body
-    this._headers = headers
+    this._status = status;
+    this._body = body;
+    this._headers = headers;
   }
 
   /**
    * Get the status code of the error response.
    */
   public get status(): number {
-    return this._status
+    return this._status;
   }
 
   /**
    * Get the body of the error response.
    */
   public get body(): string {
-    return this._body
+    return this._body;
   }
 
   /**
@@ -31,13 +31,13 @@ export class FetchError {
    * @return {Headers}
    */
   public get headers(): Headers {
-    return this._headers
+    return this._headers;
   }
 }
 
 interface CountInfo {
-  attemptCount: number
-  maxAttemptCount: number
+  attemptCount: number;
+  maxAttemptCount: number;
 }
 
 /**
@@ -59,7 +59,7 @@ export default async (
       const countInfo: CountInfo = {
         attemptCount: 0,
         maxAttemptCount: 3,
-      }
+      };
 
       handleFetchResponse(
         resolve,
@@ -69,9 +69,9 @@ export default async (
         url,
         requestContext,
         retryableErrorCodes,
-      )
+      );
     },
-  )
+  );
 
 const handleFetchResponse = async (
   resolve: Function,
@@ -83,12 +83,12 @@ const handleFetchResponse = async (
   retryableErrorCodes?: number[],
 ) => {
   if (response.ok) {
-    resolve(response)
+    resolve(response);
   } else if (
     countInfo.attemptCount < countInfo.maxAttemptCount &&
     isRetryableCode(response.status, retryableErrorCodes)
   ) {
-    countInfo.attemptCount++
+    countInfo.attemptCount++;
     performFetch(
       resolve,
       reject,
@@ -97,21 +97,21 @@ const handleFetchResponse = async (
       url,
       requestContext,
       retryableErrorCodes,
-    )
+    );
   } else {
     reject(
       new FetchError(response.status, await response.json(), response.headers),
-    )
+    );
   }
-}
+};
 
 const getNextRetryTime = (response: Response, countInfo: CountInfo) => {
-  const nextRetryTime: string = response.headers.get("Retry-After") || "0"
+  const nextRetryTime: string = response.headers.get("Retry-After") || "0";
   return Math.max(
     Math.pow(2, countInfo.attemptCount - 1) * 1000,
     Number(nextRetryTime),
-  )
-}
+  );
+};
 
 const performFetch = (
   resolve: Function,
@@ -123,7 +123,7 @@ const performFetch = (
   retryableErrorCodes?: number[],
 ) => {
   setTimeout(async () => {
-    let response: Response = await fetch(url, requestContext)
+    let response: Response = await fetch(url, requestContext);
     handleFetchResponse(
       resolve,
       reject,
@@ -132,9 +132,10 @@ const performFetch = (
       url,
       requestContext,
       retryableErrorCodes,
-    )
-  }, getNextRetryTime(priorResponse, countInfo))
-}
+    );
+  }, getNextRetryTime(priorResponse, countInfo));
+};
 
 const isRetryableCode = (code: number, retryableErrorCodes?: number[]) =>
-  code >= 500 || (retryableErrorCodes && retryableErrorCodes.indexOf(code) >= 0)
+  code >= 500 ||
+  (retryableErrorCodes && retryableErrorCodes.indexOf(code) >= 0);

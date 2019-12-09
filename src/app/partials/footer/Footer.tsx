@@ -1,5 +1,5 @@
-import React from "react"
-import "./Footer.css"
+import React from "react";
+import "./Footer.css";
 
 export default (): JSX.Element => (
   <div className="site footer">
@@ -7,6 +7,7 @@ export default (): JSX.Element => (
       <a
         href="https://github.com/sabarnac/spotify-batch-unfollow-app"
         target="_blank"
+        rel="noopener noreferrer"
       >
         GitHub
       </a>
@@ -15,9 +16,10 @@ export default (): JSX.Element => (
       <a
         href="https://github.com/sabarnac/spotify-batch-unfollow-app/issues"
         target="_blank"
+        rel="noopener noreferrer"
       >
         Report Issue
       </a>
     </div>
   </div>
-)
+);
