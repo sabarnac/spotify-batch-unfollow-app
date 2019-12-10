@@ -1,24 +1,3 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #eeeeee;
-  background: #252525;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-div#root {
-  position: relative;
-  min-height: 100vh;
-  padding-bottom: 6rem;
-}
-
 a {
   color: #75b1ff;
 }
@@ -32,17 +11,63 @@ a:visited {
 }
 
 button {
-  padding: 1rem 2rem;
-  background: #1a73e8;
-  border: none;
-  color: #252525;
+  color: #d8f3e0;
+  border: 1px solid #3b3b3b;
   border-radius: 20rem;
+  background: #3b3b3b;
+  padding: 0.75rem 1.25rem;
+  display: inline-block;
+  font-weight: 600;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:disabled {
+  border: 1px solid #575757;
+  color: #a8aca9;
+  background: #575757;
+}
+
+button:disabled:hover {
+  cursor: default;
+}
+
+div#root > div.loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .error {
-  border: 1px solid #cc0000;
+  border: none;
   border-radius: 20rem;
   background: #ee0000;
+  padding: 1rem 2rem;
+  display: inline-block;
+}
+
+.warning {
+  border: none;
+  border-radius: 20rem;
+  background: #ff8800;
+  padding: 1rem 2rem;
+  display: inline-block;
+}
+
+.success {
+  border: none;
+  border-radius: 20rem;
+  background: #2ebd59;
+  padding: 1rem 2rem;
+  display: inline-block;
+}
+
+.info {
+  border: none;
+  border-radius: 20rem;
+  background: #0055ff;
   padding: 1rem 2rem;
   display: inline-block;
 }
