@@ -1,16 +1,8 @@
-div.site.login {
+div.login {
   padding: 2rem 1rem;
   text-align: center;
 }
 
-div.site.login button {
-  background: #2ebd59;
-  color: #d8f3e0;
-  padding: 1.5rem 2rem;
+div.login button {
   font-size: 1.2rem;
-  font-weight: 600;
-}
-
-div.site.login button:hover {
-  cursor: pointer;
 }

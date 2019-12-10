@@ -1,0 +1,24 @@
+div.artist {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem;
+  border: 1px solid #d8f3e0;
+  cursor: pointer;
+}
+
+div.artist.selected {
+  border: 1px solid #252525;
+  background: #0055ff;
+}
+
+div.artist div.avatar img {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+}
+
+div.artist h3.name {
+  text-align: center;
+  margin-bottom: 0;
+}

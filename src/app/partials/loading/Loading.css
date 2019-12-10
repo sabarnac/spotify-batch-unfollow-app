@@ -1,0 +1,10 @@
+div.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+div.loading > div {
+  padding: 1rem;
+}

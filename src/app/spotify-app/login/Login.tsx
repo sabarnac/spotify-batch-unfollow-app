@@ -1,13 +1,15 @@
-import React from "react"
-import "./Login.css"
-import { getToken } from "react-oauth2-hook"
+import React from "react";
+import "./Login.css";
+import { getToken } from "react-oauth2-hook";
 
 interface LoginProps {
-  onClick: getToken
+  onClick: getToken;
 }
 
 export default ({ onClick }: LoginProps): JSX.Element => (
-  <div className="site login">
-    <button onClick={onClick}>Login with Spotify</button>
+  <div className="login">
+    <button className="success" onClick={onClick}>
+      Login with Spotify
+    </button>
   </div>
-)
+);

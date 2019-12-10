@@ -1,0 +1,25 @@
+div.list-legend {
+  padding: 1rem;
+  text-align: center;
+}
+
+div.list-legend div.item {
+  display: inline-flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+div.list-legend div.item div.color {
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid #d8f3e0;
+}
+
+div.list-legend div.item div.text {
+  padding-left: 0.5rem;
+}
+
+div.list-legend div.item.selected div.color {
+  background: #0055ff;
+}

@@ -20,13 +20,12 @@ export default <A extends any[], R>(
       return;
     }
 
+    setLoading(true);
     setResult(undefined);
     setError(undefined);
 
     let abort: boolean = false;
     (async () => {
-      setLoading(true);
-
       try {
         const callResult = await apiCall(...apiArguments);
         if (abort === false) {

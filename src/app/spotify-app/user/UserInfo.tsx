@@ -5,17 +5,19 @@ import { useGetCurrentUser } from "../../../client/spotify";
 export default (): JSX.Element => {
   const [user, loading, error] = useGetCurrentUser();
 
-  return error ? (
-    <div className="user error">
-      Error retrieving user info: {error.message}
+  return (
+    <div className="user">
+      {error ? (
+        <div className="error">Error retrieving user info: {error.message}</div>
+      ) : loading ? (
+        <div className="warning">Retrieving user info</div>
+      ) : user ? (
+        <div className="info">
+          Logged in as: <strong>{user.id}</strong>
+        </div>
+      ) : (
+        <div className="error">Not logged in</div>
+      )}
     </div>
-  ) : loading ? (
-    <div className="user error">Retrieving user info</div>
-  ) : user ? (
-    <div className="user info">
-      Logged in as: <strong>{user.email}</strong>
-    </div>
-  ) : (
-    <div className="user info">Not logged in</div>
   );
 };
