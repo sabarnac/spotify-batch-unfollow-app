@@ -1,0 +1,10 @@
+div.artists-select div.start-unfollow {
+  text-align: center;
+  border-top: 1px solid #d8f3e0;
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+div.artists-select div.start-unfollow button {
+  font-size: 1.2rem;
+}

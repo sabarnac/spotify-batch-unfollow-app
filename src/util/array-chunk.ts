@@ -1,13 +1,9 @@
-export default <T>(array: T[], groupsize: number): T[][] => {
-  let sets = [],
-    chunks,
-    i = 0
-  chunks = array.length / groupsize
+export default <T>(array: T[], size: number): T[][] => {
+  let chunks = [];
 
-  while (i < chunks) {
-    sets[i] = array.splice(0, groupsize)
-    i++
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, Math.min(array.length, i + size)));
   }
 
-  return sets
-}
+  return chunks;
+};

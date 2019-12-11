@@ -1,0 +1,22 @@
+div.artist-list-options {
+  text-align: left;
+  min-width: 260px;
+}
+
+div.artist-list-options div.filter-option {
+  padding: 0.5rem;
+}
+
+div.artist-list-options div.view-option {
+  padding: 0.5rem;
+}
+
+div.artist-list-options label {
+  display: block;
+  padding-bottom: 0.25rem;
+}
+
+div.artist-list-options button {
+  margin-top: 1rem;
+  width: 100%;
+}

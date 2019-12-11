@@ -3,6 +3,6 @@ div.all-artist-follows {
   text-align: center;
 }
 
-div.all-artist-follows div.loading {
-  padding: 1rem;
+div.all-artist-follows div.loading-message {
+  margin: 1rem;
 }

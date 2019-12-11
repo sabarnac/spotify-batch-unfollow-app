@@ -4,12 +4,26 @@ div.artist {
   padding: 2rem 1rem;
   margin: 0.5rem;
   border: 1px solid #d8f3e0;
+  max-width: 12rem;
+}
+
+div.artist.clickable {
   cursor: pointer;
 }
 
 div.artist.selected {
-  border: 1px solid #121212;
+  border: 1px solid #0055ff;
   background: #0055ff;
+}
+
+div.artist.succeeded {
+  border: 1px solid #1aa34a;
+  background: #1aa34a;
+}
+
+div.artist.failed {
+  border: 1px solid #ee0000;
+  background: #ee0000;
 }
 
 div.artist div.avatar img {
@@ -21,4 +35,10 @@ div.artist div.avatar img {
 div.artist h3.name {
   text-align: center;
   margin-bottom: 0;
+}
+
+div.artist div.description {
+  border-top: 1px solid #d8f3e0;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
 }

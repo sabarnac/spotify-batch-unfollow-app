@@ -41,7 +41,6 @@ export default <A extends any[], R>(
     })();
 
     return () => {
-      setLoading(false);
       abort = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

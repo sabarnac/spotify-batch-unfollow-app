@@ -3,6 +3,8 @@ div.loading {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  vertical-align: top;
+  padding: 1rem;
 }
 
 div.loading > div {

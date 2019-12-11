@@ -1,8 +1,8 @@
 import { Artist } from "../model";
 import sendRequest from "../util/send-request";
 
-export default async (artists: Artist[]) => {
-  sendRequest(
+export default async (artists: Artist[]) =>
+  await sendRequest(
     ["me", "following"],
     {
       type: "artist",
@@ -13,4 +13,3 @@ export default async (artists: Artist[]) => {
     { "Content-Type": "application/json" },
     "DELETE",
   );
-};

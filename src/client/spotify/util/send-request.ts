@@ -1,4 +1,4 @@
-import config, { SPOTIFY_API_URL } from "./config";
+import config, { SPOTIFY_API_URL } from "../api/config";
 import retryFetch, { FetchError } from "../../../util/retry-fetch";
 
 type RequestPathParams = (string | number)[];

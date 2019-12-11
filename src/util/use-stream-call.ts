@@ -4,7 +4,7 @@ interface Generator<A extends any[], T, TReturn = any, TNext = unknown> {
   (...args: A): AsyncGenerator<T, TReturn, TNext>;
 }
 
-type UseCallResult<R> = [R[] | undefined, boolean, Error | undefined];
+type UseCallResult<R> = [R[], boolean, Error | undefined];
 
 export default <A extends any[], R>(
   apiCall: Generator<A, R>,
@@ -44,7 +44,6 @@ export default <A extends any[], R>(
     })();
 
     return () => {
-      setLoading(false);
       abort = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

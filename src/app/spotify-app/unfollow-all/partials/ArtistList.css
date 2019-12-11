@@ -1,34 +1,30 @@
-div.all-follows-list div.results-table {
+div.unfollow-artists-list div.results-table {
   display: flex;
 }
 
-div.all-follows-list div.results-table div.results-table-options {
+div.unfollow-artists-list div.results-table div.results-table-options {
   flex-grow: 1;
 }
 
-div.all-follows-list div.results-table div.results-view {
+div.unfollow-artists-list div.results-table div.results-view {
   padding-left: 1rem;
   margin-left: 1rem;
   border-left: 1px solid #d8f3e0;
   width: 85%;
 }
 
-div.all-follows-list div.results-table div.results-view h2.list-title {
-  margin: 0;
-}
-
-div.all-follows-list div.results-table div.results-view div.pagination {
+div.unfollow-artists-list div.results-table div.results-view div.pagination {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {
-  div.all-follows-list div.results-table {
+  div.unfollow-artists-list div.results-table {
     display: block;
   }
 
-  div.all-follows-list div.results-table div.results-view {
+  div.unfollow-artists-list div.results-table div.results-view {
     padding-left: 0;
     margin-left: 0;
     border-left: none;

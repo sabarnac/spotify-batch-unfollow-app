@@ -13,12 +13,14 @@ export default (): JSX.Element => (
     <Header />
     <Description />
     <BrowserRouter>
-      <Suspense fallback={<Loading />}>
-        <Switch>
-          <Route path="/callback" component={OAuthCallback} />
-          <Route component={SpotifyApp} />
-        </Switch>
-      </Suspense>
+      <div>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route path="/callback" component={OAuthCallback} />
+            <Route component={SpotifyApp} />
+          </Switch>
+        </Suspense>
+      </div>
     </BrowserRouter>
     <Footer />
   </>

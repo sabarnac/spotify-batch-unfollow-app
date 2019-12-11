@@ -1,0 +1,8 @@
+div.unfollow-all-list {
+  padding: 2rem;
+  text-align: center;
+}
+
+div.unfollow-all-list div.loading-message {
+  margin: 1rem;
+}

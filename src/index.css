@@ -59,7 +59,7 @@ div#root > div.loading {
 .success {
   border: none;
   border-radius: 20rem;
-  background: #2ebd59;
+  background: #1aa34a;
   padding: 1rem 2rem;
   display: inline-block;
 }

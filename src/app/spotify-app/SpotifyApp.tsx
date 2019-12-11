@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { useOAuth2Token } from "react-oauth2-hook";
 
-import SpotifyConfig from "../../client/spotify/util/config";
+import SpotifyConfig from "../../client/spotify/api/config";
 import { SPOTIFY_CLIENT_ID } from "../../constants";
 import useForceUpdate from "../../util/use-force-update";
-import AllArtistFollows from "./all-follows/AllArtistFollows";
 import Login from "./login/Login";
-import UserInfo from "./user/UserInfo";
+import Loading from "../partials/loading/Loading";
+
+const UserInfo = lazy(() => import("./user/UserInfo"));
+const UnfollowArtists = lazy(() => import("./manage/UnfollowArtists"));
 
 export default (): JSX.Element => {
   const [token, getToken, setToken] = useOAuth2Token({
@@ -26,9 +28,11 @@ export default (): JSX.Element => {
   return !SpotifyConfig.userToken ? (
     <Login onClick={getToken} />
   ) : (
-    <>
+    <Suspense fallback={<Loading />}>
       <UserInfo />
-      <AllArtistFollows />
-    </>
+      <Suspense fallback={<Loading />}>
+        <UnfollowArtists />
+      </Suspense>
+    </Suspense>
   );
 };
