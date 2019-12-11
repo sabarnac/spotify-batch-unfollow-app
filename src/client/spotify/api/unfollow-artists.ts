@@ -1,5 +1,5 @@
-import { Artist } from "./model";
-import sendRequest from "./util/sendRequest";
+import { Artist } from "../model";
+import sendRequest from "../util/send-request";
 
 export default async (artists: Artist[]) => {
   sendRequest(

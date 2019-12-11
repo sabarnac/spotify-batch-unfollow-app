@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useOAuth2Token } from "react-oauth2-hook";
-import UserInfo from "./user/UserInfo";
-import { SPOTIFY_CLIENT_ID } from "../../constants";
-import Login from "./login/Login";
+
 import SpotifyConfig from "../../client/spotify/util/config";
-import useForceUpdate from "../../util/useForceUpdate";
+import { SPOTIFY_CLIENT_ID } from "../../constants";
+import useForceUpdate from "../../util/use-force-update";
 import AllArtistFollows from "./all-follows/AllArtistFollows";
+import Login from "./login/Login";
+import UserInfo from "./user/UserInfo";
 
 export default (): JSX.Element => {
   const [token, getToken, setToken] = useOAuth2Token({

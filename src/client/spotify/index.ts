@@ -1,11 +1,11 @@
-import useCall from "../../util/useCall";
-import getCurrentUser from "./getCurrentUser";
-import getUserArtistFollows from "./getUserArtistFollows";
-import getAllUserArtistFollows from "./getAllUserArtistFollows";
-import useStreamCall from "../../util/useStreamCall";
-import unfollowArtists from "./unfollowArtists";
+import useCall from "../../util/use-call";
+import useStreamCall from "../../util/use-stream-call";
+import getAllUserArtistFollows from "./api/get-all-user-artist-follows";
+import getCurrentUser from "./api/get-current-user";
+import getUserArtistFollows from "./api/get-user-artist-follows";
+import unfollowArtists from "./api/unfollow-artists";
+import unfollowArtistsChunked from "./api/unfollow-artists-chunked";
 import { Artist } from "./model";
-import unfollowArtistsChunked from "./unfollowArtistsChunked";
 
 export const useGetCurrentUser = (runNow: boolean = true) => {
   return useCall(getCurrentUser, runNow);

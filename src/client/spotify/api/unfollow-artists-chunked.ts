@@ -1,7 +1,7 @@
-import { Artist } from "./model";
-import { BATCH_SIZE } from "./util/config";
-import arrayChunk from "../../util/array-chunk";
-import unfollowArtists from "./unfollowArtists";
+import arrayChunk from "../../../util/array-chunk";
+import { Artist } from "../model";
+import { BATCH_SIZE } from "../util/config";
+import unfollowArtists from "./unfollow-artists";
 
 export default async function*(artists: Artist[]) {
   for (const chunkedArtists of arrayChunk(artists, BATCH_SIZE)) {

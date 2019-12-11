@@ -1,6 +1,6 @@
-import { FollowedArtists } from "./model";
-import getUserArtistFollows from "./getUserArtistFollows";
-import { BATCH_SIZE } from "./util/config";
+import { FollowedArtists } from "../model";
+import { BATCH_SIZE } from "../util/config";
+import getUserArtistFollows from "./get-user-artist-follows";
 
 export default async function*() {
   let after = undefined;
