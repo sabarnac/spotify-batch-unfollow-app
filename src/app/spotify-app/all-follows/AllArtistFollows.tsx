@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
 import "./AllArtistFollows.css";
+
+import React, { useEffect, useState } from "react";
+
 import { useGetAllUserArtistFollows } from "../../../client/spotify";
-import Loading from "../../partials/loading/Loading";
 import { Artist } from "../../../client/spotify/model";
 import arrayChunk from "../../../util/array-chunk";
+import Loading from "../../partials/loading/Loading";
 import ArtistList from "./partials/ArtistList";
 
-const PAGE_SIZE = 1;
+const PAGE_SIZE = 15;
 
 export default (): JSX.Element => {
   const [artistsResult, loading, error] = useGetAllUserArtistFollows();
