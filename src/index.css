@@ -48,6 +48,16 @@ div#root > div.loading {
   display: inline-block;
 }
 
+button.error:disabled {
+  border: 1px solid #aa0000;
+  color: #a8aca9;
+  background: #aa0000;
+}
+
+button.error:disabled:hover {
+  cursor: default;
+}
+
 .warning {
   border: none;
   border-radius: 20rem;

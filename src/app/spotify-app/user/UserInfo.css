@@ -1,4 +1,6 @@
 div.user {
   padding: 1rem;
   text-align: center;
+  border-bottom: 1px solid #d8f3e0;
+  margin: 0 1rem;
 }
