@@ -19,12 +19,14 @@ interface ArtistListProps {
   artists: (ArtistWithStatus & ArtistWithError)[];
   unfollowing: boolean;
   completed: boolean;
+  header: JSX.Element;
 }
 
 export default ({
   artists,
   unfollowing,
   completed,
+  header,
 }: ArtistListProps): JSX.Element => {
   const [viewSize, setViewSize] = useState(ArtistViewSize.TEN);
   const [pageIndex, setPageIndex] = useState(0);
@@ -55,6 +57,7 @@ export default ({
           <ArtistListOptions {...{ viewSize, setViewSize }} />
         </div>
         <div className="results-view">
+          {header}
           {unfollowing && <Loading />}
           <div className="artist-list">
             {artistsToShow
@@ -75,14 +78,14 @@ export default ({
           <div className="pagination">
             <button
               className="previous"
-              onClick={() => setPageIndex(pageIndex - 1)}
+              onClick={() => setPageIndex(pageIndex => pageIndex - 1)}
               disabled={pageIndex === 0}
             >
               Previous
             </button>
             <button
               className="next"
-              onClick={() => setPageIndex(pageIndex + 1)}
+              onClick={() => setPageIndex(pageIndex => pageIndex + 1)}
               disabled={(pageIndex + 1) * viewSize >= artists.length - 1}
             >
               Next

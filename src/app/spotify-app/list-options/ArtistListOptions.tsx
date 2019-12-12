@@ -30,16 +30,16 @@ export default ({
   setFilterString,
 }: ArtistListProps): JSX.Element => (
   <div className="artist-list-options">
-    <h2>View Options</h2>
+    <h2>View options</h2>
     {!isNullOrUndefined(filterString) && setFilterString && (
       <div className="filter-option">
-        <label>Search Artists:</label>
+        <label>Search artists:</label>
         <Input value={filterString} onChange={setFilterString} />
       </div>
     )}
     {!isNullOrUndefined(viewSize) && setViewSize && (
       <div className="view-option">
-        <label>Artists Per Page:</label>
+        <label>Artists per page:</label>
         <Select
           value={viewSize}
           onChange={setViewSize}

@@ -7,6 +7,7 @@ import { ArtistStatus } from "../artist/ArtistInfo";
 
 interface UnfollowAllProps {
   artists: Artist[];
+  onComplete: () => void;
 }
 
 const getInProgressArtist = (artist: Artist) => ({
@@ -22,7 +23,7 @@ const getFailedArtist = (artist: ArtistWithError) => ({
   status: ArtistStatus.FAILED,
 });
 
-export default ({ artists }: UnfollowAllProps) => {
+export default ({ artists, onComplete }: UnfollowAllProps) => {
   const [resultsChunked, loading, error] = useUnfollowArtistsChunked(artists);
   const [failedArtists, setFailedArtists] = useState<ArtistWithError[]>([]);
   const [succeededArtists, setSucceededArtists] = useState<Artist[]>([]);
@@ -43,22 +44,28 @@ export default ({ artists }: UnfollowAllProps) => {
     );
   }, [resultsChunked]);
 
+  useEffect(() => {
+    const totalAttemptedArtists =
+      failedArtists.length + succeededArtists.length;
+    if (
+      !error &&
+      !loading &&
+      !!resultsChunked &&
+      totalAttemptedArtists === artists.length
+    ) {
+      onComplete();
+    }
+  }, [
+    error,
+    loading,
+    resultsChunked,
+    onComplete,
+    failedArtists,
+    succeededArtists,
+    artists,
+  ]);
   return (
     <div className="unfollow-all-list">
-      {error && (
-        <div className="error">Error unfollowing artists: {error.message}</div>
-      )}
-      {!error && loading && (
-        <div className="warning loading-message">Unfollowing artists</div>
-      )}
-      {!error && !loading && !!resultsChunked && failedArtists.length === 0 && (
-        <div className="success loading-message">Unfollowed all artists!</div>
-      )}
-      {!error && !loading && !!resultsChunked && failedArtists.length > 0 && (
-        <div className="error loading-message">
-          Could not unfollow some artists! Failed artists listed below
-        </div>
-      )}
       <ArtistList
         artists={[
           ...artists
@@ -75,6 +82,34 @@ export default ({ artists }: UnfollowAllProps) => {
         ]}
         unfollowing={!error && loading}
         completed={!error && !loading && !!resultsChunked}
+        header={
+          <>
+            {error && (
+              <div className="error loading-message">
+                Error unfollowing artists: {error.message}
+              </div>
+            )}
+            {!error && loading && (
+              <div className="warning loading-message">Unfollowing artists</div>
+            )}
+            {!error &&
+              !loading &&
+              resultsChunked.length > 0 &&
+              failedArtists.length === 0 && (
+                <div className="success loading-message">
+                  Unfollowed all artists!
+                </div>
+              )}
+            {!error &&
+              !loading &&
+              resultsChunked.length > 0 &&
+              failedArtists.length > 0 && (
+                <div className="error loading-message">
+                  Could not unfollow some artists! Failed artists listed below
+                </div>
+              )}
+          </>
+        }
       />
     </div>
   );

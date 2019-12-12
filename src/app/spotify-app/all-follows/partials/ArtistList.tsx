@@ -12,14 +12,16 @@ interface ArtistListProps {
   artists: Artist[];
   selectedArtists: Artist[];
   loadingResults: boolean;
-  onArtistClick: (id: Artist) => void;
+  addArtist: (artistToAdd: Artist) => void;
+  removeArtist: (artistToRemove: Artist) => void;
 }
 
 export default ({
   artists,
   selectedArtists,
   loadingResults,
-  onArtistClick,
+  addArtist,
+  removeArtist,
 }: ArtistListProps): JSX.Element => {
   const [viewSize, setViewSize] = useState(ArtistViewSize.TEN);
   const [filterString, setFilterString] = useState("");
@@ -40,7 +42,7 @@ export default ({
           />
         </div>
         <div className="results-view">
-          <h2 className="list-title">Select Artists To Unfollow</h2>
+          <h2 className="list-title">Select artists to unfollow</h2>
           <ListLegend />
           <div className="artist-list">
             {artists
@@ -50,31 +52,32 @@ export default ({
                   artist.name.toLowerCase().includes(filterStringLc),
               )
               .slice(pageIndex * viewSize, (pageIndex + 1) * viewSize)
-              .map(artist => (
-                <ArtistInfo
-                  key={artist.id}
-                  status={
-                    selectedArtists.indexOf(artist) !== -1
-                      ? ArtistStatus.SELECTED
-                      : undefined
-                  }
-                  artist={artist}
-                  onClick={() => onArtistClick(artist)}
-                />
-              ))}
+              .map(artist => {
+                const isSelected = selectedArtists.indexOf(artist) !== -1;
+                return (
+                  <ArtistInfo
+                    key={artist.id}
+                    status={isSelected ? ArtistStatus.SELECTED : undefined}
+                    artist={artist}
+                    onClick={() =>
+                      isSelected ? removeArtist(artist) : addArtist(artist)
+                    }
+                  />
+                );
+              })}
           </div>
           {loadingResults && <Loading />}
           <div className="pagination">
             <button
               className="previous"
-              onClick={() => setPageIndex(pageIndex - 1)}
+              onClick={() => setPageIndex(pageIndex => pageIndex - 1)}
               disabled={pageIndex === 0}
             >
               Previous
             </button>
             <button
               className="next"
-              onClick={() => setPageIndex(pageIndex + 1)}
+              onClick={() => setPageIndex(pageIndex => pageIndex + 1)}
               disabled={(pageIndex + 1) * viewSize >= artists.length - 1}
             >
               Next

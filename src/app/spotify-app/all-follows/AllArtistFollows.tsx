@@ -8,23 +8,24 @@ import Loading from "../../partials/loading/Loading";
 import ArtistList from "./partials/ArtistList";
 
 interface AllArtistFollowsProps {
-  onChange: (selectedArtistIds: Artist[]) => void;
+  selectedArtists: Artist[];
+  addArtistsForRemoval: (...artists: Artist[]) => void;
+  removeArtistsForRemoval: (...artists: Artist[]) => void;
 }
 
-export default ({ onChange }: AllArtistFollowsProps): JSX.Element => {
+export default ({
+  selectedArtists,
+  addArtistsForRemoval,
+  removeArtistsForRemoval,
+}: AllArtistFollowsProps): JSX.Element => {
   const [artistsResult, loading, error] = useGetAllUserArtistFollows();
   const [artists, setArtists] = useState<Artist[]>([]);
-  const [newArtists, setNewArtists] = useState<Artist[]>([]);
-  const [selectedArtists, setSelectedArtists] = useState<Artist[]>([]);
 
-  const changeArtistSelection = (selectedArtist: Artist) => {
-    setSelectedArtists(selectedArtists => {
-      if (selectedArtists.indexOf(selectedArtist) !== -1) {
-        return selectedArtists.filter(artist => artist !== selectedArtist);
-      } else {
-        return [...selectedArtists, selectedArtist];
-      }
-    });
+  const addArtistToRemovalList = (artist: Artist) => {
+    addArtistsForRemoval(artist);
+  };
+  const removeArtistFromRemovalList = (artist: Artist) => {
+    removeArtistsForRemoval(artist);
   };
 
   useEffect(() => {
@@ -32,28 +33,17 @@ export default ({ onChange }: AllArtistFollowsProps): JSX.Element => {
       return;
     }
 
-    setArtists(artistsResult.flat());
-    setNewArtists(artistsResult[artistsResult.length - 1]);
-  }, [artistsResult]);
+    const newArtists = artistsResult[artistsResult.length - 1];
 
-  useEffect(() => {
-    setSelectedArtists(selectedArtists =>
-      selectedArtists.filter(oldArtist => artists.indexOf(oldArtist) !== -1),
-    );
-  }, [artists]);
+    setArtists(artists => [...artists, ...newArtists]);
 
-  useEffect(() => {
-    setSelectedArtists(selectedArtists => [...selectedArtists, ...newArtists]);
-  }, [newArtists]);
-
-  useEffect(() => {
-    onChange(selectedArtists);
-  }, [selectedArtists, onChange]);
+    addArtistsForRemoval(...newArtists);
+  }, [addArtistsForRemoval, artistsResult]);
 
   return (
     <div className="all-artist-follows">
       {error && (
-        <div className="error">
+        <div className="error loading-message">
           Error retrieving followed artists: {error.message}
         </div>
       )}
@@ -68,7 +58,8 @@ export default ({ onChange }: AllArtistFollowsProps): JSX.Element => {
           loadingResults={!error && loading}
           artists={artists}
           selectedArtists={selectedArtists}
-          onArtistClick={changeArtistSelection}
+          addArtist={addArtistToRemovalList}
+          removeArtist={removeArtistFromRemovalList}
         />
       )}
     </div>

@@ -7,25 +7,33 @@ import { Artist } from "../../../../client/spotify/model";
 import classNames from "classnames";
 
 interface ArtistsSelectProps {
-  artistCount: number;
-  onChange: (selectedArtistIds: Artist[]) => void;
+  selectedArtists: Artist[];
+  addArtists: (...artists: Artist[]) => void;
+  removeArtists: (...artists: Artist[]) => void;
   startUnfollow: () => void;
 }
 
 export default ({
-  artistCount,
-  onChange,
+  selectedArtists,
+  addArtists,
+  removeArtists,
   startUnfollow,
 }: ArtistsSelectProps): JSX.Element => (
   <div className="artists-select">
-    <AllArtistFollows onChange={onChange} />
+    <AllArtistFollows
+      selectedArtists={selectedArtists}
+      addArtistsForRemoval={addArtists}
+      removeArtistsForRemoval={removeArtists}
+    />
     <div className="start-unfollow">
       <button
-        className={classNames("error", { disabled: artistCount === 0 })}
-        disabled={artistCount === 0}
+        className={classNames("error", {
+          disabled: selectedArtists.length === 0,
+        })}
+        disabled={selectedArtists.length === 0}
         onClick={startUnfollow}
       >
-        Unfollow {artistCount} Artists
+        Unfollow {selectedArtists.length} artists
       </button>
     </div>
   </div>
