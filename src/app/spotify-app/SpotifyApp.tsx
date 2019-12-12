@@ -25,7 +25,7 @@ export default (): JSX.Element => {
     forceUpdate();
   }, [token, forceUpdate]);
 
-  return !SpotifyConfig.userToken ? (
+  return !token ? (
     <Login onClick={getToken} />
   ) : (
     <Suspense fallback={<Loading />}>
