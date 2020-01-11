@@ -1,0 +1,1 @@
+{"version":3,"sources":["UserInfo.css"],"names":[],"mappings":"AAAA,SACE,YAAa,CACb,iBAAkB,CAClB,+BAAgC,CAChC,aACF","file":"6.91d1d98b.chunk.css","sourcesContent":["div.user {\r\n  padding: 1rem;\r\n  text-align: center;\r\n  border-bottom: 1px solid #d8f3e0;\r\n  margin: 0 1rem;\r\n}\r\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["Login.css"],"names":[],"mappings":"AAAA,UACE,iBAAkB,CAClB,iBACF,CAEA,iBACE,gBACF","file":"8.ab60ec18.chunk.css","sourcesContent":["div.login {\r\n  padding: 2rem 1rem;\r\n  text-align: center;\r\n}\r\n\r\ndiv.login button {\r\n  font-size: 1.2rem;\r\n}\r\n"]}
