@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e40c50cd352e5f4589c198425b1fedd8",
+    "revision": "52a55cbb8b1c0accfbba289d07b16276",
     "url": "https://spotify-bulk-unfollow.com/index.html"
   },
   {
