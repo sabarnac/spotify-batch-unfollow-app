@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://spotify-bulk-unfollow.com/precache-manifest.8cb09ff856b3fa2fafd6640706e26a67.js"
+  "https://spotify-bulk-unfollow.com/precache-manifest.37d0186a7a2eb021eb623688b1490404.js"
 );
 
 self.addEventListener('message', (event) => {
