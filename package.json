@@ -28,7 +28,8 @@
     "typescript": "^3.7.3"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "clean": "rm -rf ./build",
+    "predeploy": "npm run clean && npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
