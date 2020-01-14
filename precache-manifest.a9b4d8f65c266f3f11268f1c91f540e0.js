@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "52a55cbb8b1c0accfbba289d07b16276",
+    "revision": "04f2f5a93efb34e41dc22b35c6fd1197",
     "url": "https://spotify-bulk-unfollow.com/index.html"
   },
   {
-    "revision": "b972f7234057557be0d0",
+    "revision": "9d71331394e9c78d1d80",
     "url": "https://spotify-bulk-unfollow.com/static/css/3.c7d8627d.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://spotify-bulk-unfollow.com/static/js/2.a78645ea.chunk.js.LICENSE"
   },
   {
-    "revision": "b972f7234057557be0d0",
-    "url": "https://spotify-bulk-unfollow.com/static/js/3.5c5ef48a.chunk.js"
+    "revision": "9d71331394e9c78d1d80",
+    "url": "https://spotify-bulk-unfollow.com/static/js/3.c1eadba6.chunk.js"
   },
   {
     "revision": "5672bfba5b28d030e8c1",
@@ -68,8 +68,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://spotify-bulk-unfollow.com/static/js/main.16061ab1.chunk.js"
   },
   {
-    "revision": "cb243b64a18464c5f647",
-    "url": "https://spotify-bulk-unfollow.com/static/js/runtime-main.e8d09ea8.js"
+    "revision": "f7cb50b5eaf46bdfadec",
+    "url": "https://spotify-bulk-unfollow.com/static/js/runtime-main.9e081ab1.js"
   },
   {
     "revision": "c2e032c479db2bc429450abe9c077075",
