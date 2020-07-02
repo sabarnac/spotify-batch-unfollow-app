@@ -5,6 +5,7 @@ div.artist {
   margin: 0.5rem;
   border: 1px solid #d8f3e0;
   max-width: 12rem;
+  border-radius: 1rem;
 }
 
 div.artist.clickable {
