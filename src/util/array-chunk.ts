@@ -1,4 +1,4 @@
-export default <T>(array: T[], size: number): T[][] => {
+const arrayChunk = <T>(array: T[], size: number): T[][] => {
   let chunks = [];
 
   for (let i = 0; i < array.length; i += size) {
@@ -7,3 +7,5 @@ export default <T>(array: T[], size: number): T[][] => {
 
   return chunks;
 };
+
+export default arrayChunk;

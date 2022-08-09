@@ -1,33 +1,33 @@
 import "./UnfollowArtists.css";
 
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
-// import Loading from "../../partials/loading/Loading";
-import ArtistsSelect from "./partials/ArtistsSelect";
 import { Artist } from "../../../client/spotify/model";
 import ArtistsRemove from "./partials/ArtistsRemove";
+import ArtistsSelect from "./partials/ArtistsSelect";
 
+// import Loading from "../../partials/loading/Loading";
 enum UnfollowArtistsView {
   ARTIST_SELECT = "artist-select",
   ARTIST_REMOVE = "artist-remove",
 }
 
-export default (): JSX.Element => {
+const UnfollowArtists = (): JSX.Element => {
   const [view, setView] = useState(UnfollowArtistsView.ARTIST_SELECT);
   const [artistsToRemove, setArtistsToRemove] = useState(new Set<Artist>());
 
   const addArtists = useCallback(
     (...artistsToAdd: Artist[]) =>
-      setArtistsToRemove(artists => {
-        artistsToAdd.forEach(artist => artists.add(artist));
+      setArtistsToRemove((artists) => {
+        artistsToAdd.forEach((artist) => artists.add(artist));
         return new Set(artists);
       }),
     [],
   );
   const removeArtists = useCallback(
     (...artistsToRemove: Artist[]) =>
-      setArtistsToRemove(artists => {
-        artistsToRemove.forEach(artist => artists.delete(artist));
+      setArtistsToRemove((artists) => {
+        artistsToRemove.forEach((artist) => artists.delete(artist));
         return new Set(artists);
       }),
     [],
@@ -54,3 +54,5 @@ export default (): JSX.Element => {
     </div>
   );
 };
+
+export default UnfollowArtists;

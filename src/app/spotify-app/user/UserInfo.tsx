@@ -1,8 +1,10 @@
-import React from "react";
 import "./UserInfo.css";
+
+import React from "react";
+
 import { useGetCurrentUser } from "../../../client/spotify";
 
-export default (): JSX.Element => {
+const UserInfo = (): JSX.Element => {
   const [user, loading, error] = useGetCurrentUser();
 
   return (
@@ -21,3 +23,5 @@ export default (): JSX.Element => {
     </div>
   );
 };
+
+export default UserInfo;

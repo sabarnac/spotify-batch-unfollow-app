@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
 import "./ArtistList.css";
+
+import React, { useEffect, useState } from "react";
+
 import { Artist } from "../../../../client/spotify/model";
-import ArtistInfo, { ArtistStatus } from "../../artist/ArtistInfo";
-import ArtistListOptions, {
-  ArtistViewSize,
-} from "../../list-options/ArtistListOptions";
 import Loading from "../../../partials/loading/Loading";
+import ArtistInfo, { ArtistStatus } from "../../artist/ArtistInfo";
+import ArtistListOptions, { ArtistViewSize } from "../../list-options/ArtistListOptions";
 
 interface ArtistWithStatus extends Artist {
   status: ArtistStatus;
@@ -22,12 +22,7 @@ interface ArtistListProps {
   header: JSX.Element;
 }
 
-export default ({
-  artists,
-  unfollowing,
-  completed,
-  header,
-}: ArtistListProps): JSX.Element => {
+const ArtistList = ({ artists, unfollowing, completed, header }: ArtistListProps): JSX.Element => {
   const [viewSize, setViewSize] = useState(ArtistViewSize.TEN);
   const [pageIndex, setPageIndex] = useState(0);
 
@@ -43,12 +38,9 @@ export default ({
     setPageIndex(0);
   }, [completed]);
 
-  const failedArtists = artists.filter(
-    artist => artist.status === ArtistStatus.FAILED,
-  );
+  const failedArtists = artists.filter((artist) => artist.status === ArtistStatus.FAILED);
 
-  const artistsToShow =
-    completed && failedArtists.length > 0 ? failedArtists : artists;
+  const artistsToShow = completed && failedArtists.length > 0 ? failedArtists : artists;
 
   return (
     <div className="unfollow-artists-list">
@@ -60,32 +52,26 @@ export default ({
           {header}
           {unfollowing && <Loading />}
           <div className="artist-list">
-            {artistsToShow
-              .slice(pageIndex * viewSize, (pageIndex + 1) * viewSize)
-              .map(artist => (
-                <ArtistInfo
-                  key={artist.id}
-                  status={artist.status}
-                  artist={artist}
-                  description={
-                    artist.error
-                      ? `Could not unfollow. Error: ${artist.error.message}`
-                      : undefined
-                  }
-                />
-              ))}
+            {artistsToShow.slice(pageIndex * viewSize, (pageIndex + 1) * viewSize).map((artist) => (
+              <ArtistInfo
+                key={artist.id}
+                status={artist.status}
+                artist={artist}
+                description={artist.error ? `Could not unfollow. Error: ${artist.error.message}` : undefined}
+              />
+            ))}
           </div>
           <div className="pagination">
             <button
               className="previous"
-              onClick={() => setPageIndex(pageIndex => pageIndex - 1)}
+              onClick={() => setPageIndex((pageIndex) => pageIndex - 1)}
               disabled={pageIndex === 0}
             >
               Previous
             </button>
             <button
               className="next"
-              onClick={() => setPageIndex(pageIndex => pageIndex + 1)}
+              onClick={() => setPageIndex((pageIndex) => pageIndex + 1)}
               disabled={(pageIndex + 1) * viewSize >= artists.length - 1}
             >
               Next
@@ -96,3 +82,5 @@ export default ({
     </div>
   );
 };
+
+export default ArtistList;

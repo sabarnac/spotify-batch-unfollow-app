@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { FetchError } from "./retry-fetch";
 
 interface Function<A extends any[], R> {
   (...args: A): Promise<R>;
@@ -6,7 +8,7 @@ interface Function<A extends any[], R> {
 
 type UseCallResult<R> = [R | undefined, boolean, Error | undefined];
 
-export default <A extends any[], R>(
+const useCall = <A extends any[], R>(
   apiCall: Function<A, R>,
   runNow: boolean,
   ...apiArguments: A
@@ -33,8 +35,9 @@ export default <A extends any[], R>(
           setLoading(false);
         }
       } catch (error) {
-        if (error.name !== "AbortError" && abort === false) {
-          setError(error);
+        const errorObj = error as FetchError;
+        if (errorObj.name !== "AbortError" && abort === false) {
+          setError(errorObj);
           setLoading(false);
         }
       }
@@ -48,3 +51,5 @@ export default <A extends any[], R>(
 
   return [result, loading, error];
 };
+
+export default useCall;

@@ -8,9 +8,11 @@ interface LoadingProps {
   color?: string;
 }
 
-export default ({ text, color = "#d8f3e0" }: LoadingProps) => (
+const Loading = ({ text, color = "#d8f3e0" }: LoadingProps) => (
   <div className="loading">
-    <ClipLoader sizeUnit={"rem"} size={3} color={color} />
+    <ClipLoader size="3rem" color={color} />
     {text && <div>{text}</div>}
   </div>
 );
+
+export default Loading;

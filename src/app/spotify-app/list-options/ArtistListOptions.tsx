@@ -1,8 +1,10 @@
-import React from "react";
 import "./ArtistListOptions.css";
-import Select from "../../partials/select/Select";
+
+import React from "react";
+
+import { isNullOrUndefined } from "../../../util";
 import Input from "../../partials/input/Input";
-import { isNullOrUndefined } from "util";
+import Select from "../../partials/select/Select";
 
 export enum ArtistViewSize {
   FIFTY = 50,
@@ -23,12 +25,7 @@ interface ArtistListProps {
   setFilterString?: (filterString: string) => void;
 }
 
-export default ({
-  viewSize,
-  setViewSize,
-  filterString,
-  setFilterString,
-}: ArtistListProps): JSX.Element => (
+const ArtistList = ({ viewSize, setViewSize, filterString, setFilterString }: ArtistListProps): JSX.Element => (
   <div className="artist-list-options">
     <h2>View options</h2>
     {!isNullOrUndefined(filterString) && setFilterString && (
@@ -40,11 +37,7 @@ export default ({
     {!isNullOrUndefined(viewSize) && setViewSize && (
       <div className="view-option">
         <label>Artists per page:</label>
-        <Select
-          value={viewSize}
-          onChange={setViewSize}
-          options={VIEW_OPTIONS}
-        />
+        <Select value={viewSize} onChange={setViewSize} options={VIEW_OPTIONS} />
       </div>
     )}
     <button
@@ -58,3 +51,5 @@ export default ({
     </button>
   </div>
 );
+
+export default ArtistList;

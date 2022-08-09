@@ -1,10 +1,10 @@
 import "./ArtistsSelect.css";
 
+import classNames from "classnames";
 import React from "react";
 
-import AllArtistFollows from "../../all-follows/AllArtistFollows";
 import { Artist } from "../../../../client/spotify/model";
-import classNames from "classnames";
+import AllArtistFollows from "../../all-follows/AllArtistFollows";
 
 interface ArtistsSelectProps {
   selectedArtists: Artist[];
@@ -13,7 +13,7 @@ interface ArtistsSelectProps {
   startUnfollow: () => void;
 }
 
-export default ({
+const ArtistsSelect = ({
   selectedArtists,
   addArtists,
   removeArtists,
@@ -38,3 +38,5 @@ export default ({
     </div>
   </div>
 );
+
+export default ArtistsSelect;

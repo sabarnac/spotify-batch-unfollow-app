@@ -1,16 +1,16 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useOAuth2Token } from "react-oauth2-hook";
 
 import SpotifyConfig from "../../client/spotify/api/config";
 import { SPOTIFY_CLIENT_ID } from "../../constants";
 import useForceUpdate from "../../util/use-force-update";
-import Login from "./login/Login";
 import Loading from "../partials/loading/Loading";
+import Login from "./login/Login";
 
 const UserInfo = lazy(() => import("./user/UserInfo"));
 const UnfollowArtists = lazy(() => import("./manage/UnfollowArtists"));
 
-export default (): JSX.Element => {
+const SpotifyApp = (): JSX.Element => {
   const [token, getToken, setToken] = useOAuth2Token({
     authorizeUrl: "https://accounts.spotify.com/authorize",
     scope: ["user-follow-read", "user-follow-modify"],
@@ -36,3 +36,5 @@ export default (): JSX.Element => {
     </Suspense>
   );
 };
+
+export default SpotifyApp;

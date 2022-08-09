@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { FetchError } from "./retry-fetch";
 
 interface Generator<A extends any[], T, TReturn = any, TNext = unknown> {
   (...args: A): AsyncGenerator<T, TReturn, TNext>;
@@ -6,7 +8,7 @@ interface Generator<A extends any[], T, TReturn = any, TNext = unknown> {
 
 type UseCallResult<R> = [R[], boolean, Error | undefined];
 
-export default <A extends any[], R>(
+const useStreamCall = <A extends any[], R>(
   apiCall: Generator<A, R>,
   runNow: boolean,
   ...apiArguments: A
@@ -29,15 +31,16 @@ export default <A extends any[], R>(
       try {
         for await (const newResult of apiCall(...apiArguments)) {
           if (abort === false) {
-            setResult(oldResult => [...oldResult, newResult]);
+            setResult((oldResult) => [...oldResult, newResult]);
           }
         }
         if (abort === false) {
           setLoading(false);
         }
       } catch (error) {
-        if (error.name !== "AbortError" && abort === false) {
-          setError(error);
+        const errorObj = error as FetchError;
+        if (errorObj.name !== "AbortError" && abort === false) {
+          setError(errorObj);
           setLoading(false);
         }
       }
@@ -51,3 +54,5 @@ export default <A extends any[], R>(
 
   return [result, loading, error];
 };
+
+export default useStreamCall;

@@ -1,7 +1,7 @@
 import { Artist } from "../model";
 import sendRequest from "../util/send-request";
 
-export default async (artists: Artist[]) =>
+const unfollowArtists = async (artists: Artist[]) =>
   await sendRequest(
     ["me", "following"],
     {
@@ -13,3 +13,5 @@ export default async (artists: Artist[]) =>
     { "Content-Type": "application/json" },
     "DELETE",
   );
+
+export default unfollowArtists;

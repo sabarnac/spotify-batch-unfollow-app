@@ -1,5 +1,6 @@
-import React from "react";
 import "./Input.css";
+
+import React from "react";
 
 interface InputProps {
   value: string;
@@ -7,11 +8,8 @@ interface InputProps {
   onChange: (id: string) => void;
 }
 
-export default ({ value, placeholder, onChange }: InputProps): JSX.Element => (
-  <input
-    type="text"
-    placeholder={placeholder}
-    value={value}
-    onChange={e => onChange(e.target.value)}
-  />
+const Input = ({ value, placeholder, onChange }: InputProps): JSX.Element => (
+  <input type="text" placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} />
 );
+
+export default Input;

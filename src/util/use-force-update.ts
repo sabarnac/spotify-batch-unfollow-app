@@ -1,7 +1,9 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 
-export default () => {
+const useForceupdate = () => {
   const [, setState] = useState(true);
 
-  return useCallback(() => setState(oldState => !oldState), []);
+  return useCallback(() => setState((oldState) => !oldState), []);
 };
+
+export default useForceupdate;

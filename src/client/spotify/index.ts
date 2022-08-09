@@ -11,10 +11,7 @@ export const useGetCurrentUser = (runNow: boolean = true) => {
   return useCall(getCurrentUser, runNow);
 };
 
-export const useGetUserArtistFollows = (
-  limit: number = 50,
-  runNow: boolean = true,
-) => {
+export const useGetUserArtistFollows = (limit: number = 50, runNow: boolean = true) => {
   return useCall(getUserArtistFollows, runNow, limit);
 };
 
@@ -22,16 +19,10 @@ export const useGetAllUserArtistFollows = (runNow: boolean = true) => {
   return useStreamCall(getAllUserArtistFollows, runNow);
 };
 
-export const useUnfollowArtists = (
-  artists: Artist[],
-  runNow: boolean = true,
-) => {
+export const useUnfollowArtists = (artists: Artist[], runNow: boolean = true) => {
   return useCall(unfollowArtists, runNow, artists);
 };
 
-export const useUnfollowArtistsChunked = (
-  artists: Artist[],
-  runNow: boolean = true,
-) => {
+export const useUnfollowArtistsChunked = (artists: Artist[], runNow: boolean = true) => {
   return useStreamCall(unfollowArtistsChunked, runNow, artists);
 };

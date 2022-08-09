@@ -2,7 +2,7 @@ import { Follows } from "../model";
 import { getJsonResponse } from "../util/response-parser";
 import sendRequest from "../util/send-request";
 
-export default async (limit: number, after?: string) =>
+const getUserArtistsFollows = async (limit: number, after?: string) =>
   (
     await getJsonResponse<Follows>(
       await sendRequest(["me", "following"], {
@@ -12,3 +12,5 @@ export default async (limit: number, after?: string) =>
       }),
     )
   ).artists;
+
+export default getUserArtistsFollows;

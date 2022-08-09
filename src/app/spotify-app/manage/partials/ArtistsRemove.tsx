@@ -10,25 +10,15 @@ interface ArtistsRemoveProps {
   restartUnfollow: () => void;
 }
 
-export default ({
-  artists,
-  restartUnfollow,
-}: ArtistsRemoveProps): JSX.Element => {
+const ArtistsRemove = ({ artists, restartUnfollow }: ArtistsRemoveProps): JSX.Element => {
   const [allowRestart, setAllowRestart] = useState(false);
 
   return (
     <div className="artists-remove">
-      <UnfollowAll
-        artists={artists}
-        onComplete={() => setAllowRestart(true)}
-      />
+      <UnfollowAll artists={artists} onComplete={() => setAllowRestart(true)} />
       {allowRestart && (
         <div className="restart-unfollow">
-          <button
-            className="info"
-            disabled={!allowRestart}
-            onClick={restartUnfollow}
-          >
+          <button className="info" disabled={!allowRestart} onClick={restartUnfollow}>
             Unfollow more artists
           </button>
         </div>
@@ -36,3 +26,5 @@ export default ({
     </div>
   );
 };
+
+export default ArtistsRemove;
