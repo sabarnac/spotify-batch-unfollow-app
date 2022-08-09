@@ -8,6 +8,7 @@ const logoutFromApp = () => {
   SpotifyConfig.resetToken();
   localStorage.clear();
   sessionStorage.clear();
+  window.location.reload();
 };
 
 const Logout = (): JSX.Element => (
