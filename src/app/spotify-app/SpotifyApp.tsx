@@ -9,6 +9,7 @@ import Login from "./login/Login";
 
 const UserInfo = lazy(() => import("./user/UserInfo"));
 const UnfollowArtists = lazy(() => import("./manage/UnfollowArtists"));
+const Logout = lazy(() => import("./logout/Logout"));
 
 const SpotifyApp = (): JSX.Element => {
   const [token, getToken, setToken] = useOAuth2Token({
@@ -32,6 +33,7 @@ const SpotifyApp = (): JSX.Element => {
       <UserInfo />
       <Suspense fallback={<Loading />}>
         <UnfollowArtists />
+        <Logout />
       </Suspense>
     </Suspense>
   );
