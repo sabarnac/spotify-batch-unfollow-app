@@ -9,8 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      - name: "Build application"
+        run: "npm run build"
+        env:
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
+      - name: "Deploy application"
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          access-token: ${{ secrets.GATSBY_PUBLISH_ACCESS_TOKEN }}
-          deploy-branch: gh-pages
+          folder: build
+          token: ${{ secrets.PUBLISH_ACCESS_TOKEN }}
