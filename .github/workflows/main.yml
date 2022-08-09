@@ -12,7 +12,9 @@ jobs:
       - name: Checkout application
         uses: actions/checkout@v3
       - name: "Build application"
-        run: "npm run build"
+        run: |
+          npm i
+          npm run build
         env:
           REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
           PUBLIC_URL: ${{ secrets.PUBLIC_URL }}
