@@ -1,5 +1,8 @@
 div.site.header {
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.site.header h1 {

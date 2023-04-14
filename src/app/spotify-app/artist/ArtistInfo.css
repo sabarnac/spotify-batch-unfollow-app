@@ -4,7 +4,7 @@ div.artist {
   padding: 2rem 1rem;
   margin: 0.5rem;
   border: 1px solid #d8f3e0;
-  max-width: 12rem;
+  max-width: 20rem;
   border-radius: 1rem;
 }
 
@@ -30,7 +30,6 @@ div.artist.failed {
 div.artist div.avatar img {
   height: 10rem;
   width: 10rem;
-  border-radius: 50%;
 }
 
 div.artist h3.name {
@@ -42,4 +41,16 @@ div.artist div.description {
   border-top: 1px solid #d8f3e0;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
+}
+
+div.artist a.artist-link{
+  display: inline-flex;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+div.artist a.artist-link img.spotify-link-logo {
+  display: inline-block;
+  padding-left: 0.5rem;
+  height: 2rem;
 }
