@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Spotify Bulk Unfollow App</title>
+    <title>Bulk Unfollow Artists on Spotify</title>
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // https://github.com/rafrex/spa-github-pages
@@ -23,9 +23,9 @@
       // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
       // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
       // Otherwise, leave segmentCount as 0.
-      var segmentCount = 0
+      var segmentCount = 0;
 
-      var l = window.location
+      var l = window.location;
       l.replace(
         l.protocol +
           "//" +
@@ -36,15 +36,10 @@
             .slice(0, 1 + segmentCount)
             .join("/") +
           "/?p=/" +
-          l.pathname
-            .slice(1)
-            .split("/")
-            .slice(segmentCount)
-            .join("/")
-            .replace(/&/g, "~and~") +
+          l.pathname.slice(1).split("/").slice(segmentCount).join("/").replace(/&/g, "~and~") +
           (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
           l.hash,
-      )
+      );
     </script>
   </head>
   <body></body>

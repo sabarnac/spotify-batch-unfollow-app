@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="An application for unfollowing artists from Spotify in bulk"
+      content="Third-party app that lets you unfollow artists in bulk, instead of doing it one at a time."
     />
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
@@ -24,44 +24,34 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Spotify Bulk Unfollow App</title>
-    <meta
-      property="description"
-      content="An application for unfollowing artists from Sptoify in bulk"
-    />
-    <meta property="og:title" content="Spotify Bulk Unfollow App" />
+    <title>Bulk Unfollow Artists on Spotify</title>
+    <meta property="description" content="An application for unfollowing artists from Sptoify in bulk" />
+    <meta property="og:title" content="Bulk Unfollow Artists on Spotify" />
     <meta property="og:url" content="%PUBLIC_URL%" />
     <meta
       property="og:description"
-      content="An application for unfollowing artists from Spotify in bulk"
+      content="Third-party app that lets you unfollow artists in bulk, instead of doing it one at a time."
     />
     <meta property="og:image" content="%PUBLIC_URL%/preview.png" />
     <meta property="og:image:width" content="2048" />
     <meta property="og:image:height" content="1024" />
-    <meta
-      property="og:image:alt"
-      content="Crossed out default spotify user icon"
-    />
+    <meta property="og:image:alt" content="Crossed out default spotify user icon" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@DisappointinAf" />
     <meta name="twitter:creator" content="@DisappointinAf" />
-    <meta name="twitter:title" content="Spotify Bulk Unfollow App" />
+    <meta name="twitter:title" content="Bulk Unfollow Artists on Spotify" />
     <meta
       name="twitter:description"
-      content="An application for unfollowing artists from Spotify in bulk"
+      content="Third-party app that lets you unfollow artists in bulk, instead of doing it one at a time."
     />
     <meta name="twitter:image" content="%PUBLIC_URL%/preview.png" />
-    <meta
-      name="twitter:image:alt"
-      content="Crossed out default spotify user icon"
-    />
+    <meta name="twitter:image:alt" content="Crossed out default spotify user icon" />
     <style type="text/css">
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-          "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-          "Helvetica Neue", sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+          "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #d8f3e0;
@@ -91,31 +81,25 @@
       // When the single page app is loaded further down in this file,
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
-      ;(function(l) {
+      (function (l) {
         if (l.search) {
-          var q = {}
+          var q = {};
           l.search
             .slice(1)
             .split("&")
-            .forEach(function(v) {
-              var a = v.split("=")
-              q[a[0]] = a
-                .slice(1)
-                .join("=")
-                .replace(/~and~/g, "&")
-            })
+            .forEach(function (v) {
+              var a = v.split("=");
+              q[a[0]] = a.slice(1).join("=").replace(/~and~/g, "&");
+            });
           if (q.p !== undefined) {
             window.history.replaceState(
               null,
               null,
-              l.pathname.slice(0, -1) +
-                (q.p || "") +
-                (q.q ? "?" + q.q : "") +
-                l.hash,
-            )
+              l.pathname.slice(0, -1) + (q.p || "") + (q.q ? "?" + q.q : "") + l.hash,
+            );
           }
         }
-      })(window.location)
+      })(window.location);
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
   </head>
