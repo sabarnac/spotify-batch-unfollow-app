@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "https://spotify-bulk-unfollow.com/static/css/main.ed927a5e.css",
+    "main.css": "https://spotify-bulk-unfollow.com/static/css/main.10e7e021.css",
     "main.js": "https://spotify-bulk-unfollow.com/static/js/main.9b29adc4.js",
     "static/css/584.f6845aa0.chunk.css": "https://spotify-bulk-unfollow.com/static/css/584.f6845aa0.chunk.css",
     "static/js/584.4e5ee914.chunk.js": "https://spotify-bulk-unfollow.com/static/js/584.4e5ee914.chunk.js",
@@ -19,7 +19,7 @@
     "static/media/spotify-logo.png": "https://spotify-bulk-unfollow.com/static/media/spotify-logo.0c4ae91bae23217d39c9.png",
     "static/media/default.png": "https://spotify-bulk-unfollow.com/static/media/default.b315bfa5ca1ef960e55f.png",
     "index.html": "https://spotify-bulk-unfollow.com/index.html",
-    "main.ed927a5e.css.map": "https://spotify-bulk-unfollow.com/static/css/main.ed927a5e.css.map",
+    "main.10e7e021.css.map": "https://spotify-bulk-unfollow.com/static/css/main.10e7e021.css.map",
     "main.9b29adc4.js.map": "https://spotify-bulk-unfollow.com/static/js/main.9b29adc4.js.map",
     "584.f6845aa0.chunk.css.map": "https://spotify-bulk-unfollow.com/static/css/584.f6845aa0.chunk.css.map",
     "584.4e5ee914.chunk.js.map": "https://spotify-bulk-unfollow.com/static/js/584.4e5ee914.chunk.js.map",
@@ -37,7 +37,7 @@
     "537.2d9ea937.chunk.js.map": "https://spotify-bulk-unfollow.com/static/js/537.2d9ea937.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed927a5e.css",
+    "static/css/main.10e7e021.css",
     "static/js/main.9b29adc4.js"
   ]
 }
