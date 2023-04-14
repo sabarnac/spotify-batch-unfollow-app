@@ -1,6 +1,6 @@
 {
-  "short_name": "Spotify Unfollow",
-  "name": "Spotify Bulk Unfollow App",
+  "short_name": "Unfollow Artists",
+  "name": "Bulk Unfollow Artists on Spotify",
   "icons": [
     {
       "src": "favicon.ico",
