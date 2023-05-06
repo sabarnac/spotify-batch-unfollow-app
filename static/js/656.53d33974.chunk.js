@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkspotify_batch_unfollow_app=self.webpackChunkspotify_batch_unfollow_app||[]).push([[656],{4656:function(o,n,e){e.r(n),e.d(n,{default:function(){return c}});e(2791);var t=e(4547),a=e(184),l=function(){t.ZP.resetToken(),localStorage.clear(),sessionStorage.clear(),window.location.reload()},c=function(){return(0,a.jsx)("div",{className:"logout",children:(0,a.jsx)("button",{className:"warning",onClick:l,children:"Logout"})})}}}]);
-//# sourceMappingURL=656.53d33974.chunk.js.map
