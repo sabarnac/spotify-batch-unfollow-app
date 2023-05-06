@@ -74,13 +74,19 @@ export const getResultTypesForFollowTypes = (...followTypes: FollowType[]) =>
 export const RESULTS_TYPE_NAME_LC: Record<ResultTypes, string> = {
   user: "users",
   artist: "artists",
-  show: "shows (podcasts)",
+  show: "shows",
 };
 
 export const RESULTS_TYPE_NAME_CAP: Record<ResultTypes, string> = {
   user: "Users",
   artist: "Artists",
-  show: "Shows (Podcasts)",
+  show: "Shows",
+};
+
+export const RESULTS_TYPE_NAME_SINGULAR_CAP: Record<ResultTypes, string> = {
+  user: "User",
+  artist: "Artist",
+  show: "Show",
 };
 
 export const getFollowTypeText = (dict: Record<ResultTypes, string>, ...followTypes: FollowType[]) =>

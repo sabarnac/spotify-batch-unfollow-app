@@ -3,7 +3,7 @@ import "./FollowInfo.css";
 import classNames from "classnames";
 import React from "react";
 
-import { Follow, RESULTS_TYPE_NAME_CAP } from "../../../client/spotify/model";
+import { Follow, RESULTS_TYPE_NAME_SINGULAR_CAP } from "../../../client/spotify/model";
 import DefaultImage from "./default.png";
 import SpotifyLogo from "./spotify-logo.png";
 
@@ -32,9 +32,8 @@ const FollowInfo = ({ follow, status, onClick, description }: FollowProps): JSX.
     <div className="avatar">
       <img src={follow.images[0]?.url ?? DefaultImage} alt={`${follow.name} Avatar`} />
     </div>
-    <h3 className="name">
-      {follow.name} ({RESULTS_TYPE_NAME_CAP[follow.type]})
-    </h3>
+    <h3 className="name">{follow.name}</h3>
+    <div className="type">{RESULTS_TYPE_NAME_SINGULAR_CAP[follow.type]}</div>
     <a className="follow-link" href={follow.external_urls.spotify} target="_blank" rel="noopener noreferrer">
       View on <img className="spotify-link-logo" src={SpotifyLogo} alt="Spotify Logo" />
     </a>
