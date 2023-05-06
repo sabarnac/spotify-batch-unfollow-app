@@ -1,4 +1,5 @@
 import "react-toggle/style.css";
+import "./Checkbox.css";
 
 import React from "react";
 import Toggle from "react-toggle";
