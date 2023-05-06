@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { OAuthPopup } from "@tasoskakour/react-use-oauth2";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 

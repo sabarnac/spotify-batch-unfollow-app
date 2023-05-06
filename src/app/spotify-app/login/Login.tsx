@@ -1,6 +1,5 @@
 import "./Login.css";
 
-import React from "react";
 import { SpotifyPermissionOptions } from "../../../client/spotify/model";
 import Checkbox from "../../partials/checkbox/Checkbox";
 

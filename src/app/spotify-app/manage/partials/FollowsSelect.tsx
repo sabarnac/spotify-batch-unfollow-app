@@ -1,7 +1,6 @@
 import "./FollowsSelect.css";
 
 import classNames from "classnames";
-import React from "react";
 
 import { RESULTS_TYPE_NAME_LC, Follow, FollowType, getFollowTypeText } from "../../../../client/spotify/model";
 import AllFollows from "../../all-follows/AllFollows";

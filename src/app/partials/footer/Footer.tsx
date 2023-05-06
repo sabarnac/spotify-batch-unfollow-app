@@ -1,7 +1,5 @@
 import "./Footer.css";
 
-import React from "react";
-
 const Footer = (): JSX.Element => (
   <div className="site footer">
     <div className="item">

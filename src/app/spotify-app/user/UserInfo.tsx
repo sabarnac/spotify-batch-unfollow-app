@@ -1,7 +1,5 @@
 import "./UserInfo.css";
 
-import React from "react";
-
 import { useGetCurrentUser } from "../../../client/spotify";
 
 const UserInfo = (): JSX.Element => {

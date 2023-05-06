@@ -1,7 +1,5 @@
 import "./ListLegend.css";
 
-import React from "react";
-
 const ListLegend = (): JSX.Element => (
   <div className="list-legend">
     <div className="item normal">

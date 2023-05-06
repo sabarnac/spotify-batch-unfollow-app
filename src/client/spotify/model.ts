@@ -90,7 +90,7 @@ export const RESULTS_TYPE_NAME_SINGULAR_CAP: Record<ResultTypes, string> = {
 };
 
 export const getFollowTypeText = (dict: Record<ResultTypes, string>, ...followTypes: FollowType[]) =>
-  getResultTypesForFollowTypes(...followTypes)
+  getResultTypesForFollowTypes(...followTypes.sort())
     .map((type) => dict[type])
     .join(", ");
 

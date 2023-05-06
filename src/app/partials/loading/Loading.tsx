@@ -1,6 +1,5 @@
 import "./Loading.css";
 
-import React from "react";
 import { ClipLoader } from "react-spinners";
 
 interface LoadingProps {

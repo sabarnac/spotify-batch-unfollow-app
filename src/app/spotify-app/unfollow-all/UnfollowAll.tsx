@@ -1,6 +1,6 @@
 import "./UnfollowAll.css";
 
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useUnfollowFollowsChunked } from "../../../client/spotify";
 import {

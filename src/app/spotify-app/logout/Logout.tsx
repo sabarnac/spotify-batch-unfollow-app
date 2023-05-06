@@ -1,6 +1,6 @@
 import "./Logout.css";
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import AppContext from "../store/AppContext";
 

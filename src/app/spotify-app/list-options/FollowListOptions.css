@@ -3,27 +3,40 @@ div.follow-list-options {
   min-width: 260px;
 }
 
+div.follow-list-options div.type-option > span {
+  display: block;
+  font-weight: 600;
+  padding: 0rem 0rem 0.5rem 0rem;
+}
+
 div.follow-list-options div.type-option label {
   display: inline-flex;
   align-items: center;
-  padding: 0rem 0rem 1rem 0rem;
+  padding: 0rem 0rem 0.5rem 0rem;
 }
 
-div.follow-list-options div.type-option label span {
-  padding: 0rem 1rem;
+div.follow-list-options div.type-option label > span {
+  padding: 0rem 0.5rem;
 }
 
 div.follow-list-options div.filter-option {
   padding: 0.5rem;
 }
 
+div.follow-list-options div.filter-option label span {
+  display: block;
+  font-weight: 600;
+  padding: 0rem 0rem 0.5rem 0rem;
+}
+
 div.follow-list-options div.view-option {
   padding: 0.5rem;
 }
 
-div.follow-list-options label {
+div.follow-list-options div.view-option label span {
   display: block;
-  padding-bottom: 0.25rem;
+  font-weight: 600;
+  padding: 0rem 0rem 0.5rem 0rem;
 }
 
 div.follow-list-options button {

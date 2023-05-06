@@ -1,7 +1,6 @@
 import "./FollowInfo.css";
 
 import classNames from "classnames";
-import React from "react";
 
 import { Follow, RESULTS_TYPE_NAME_SINGULAR_CAP } from "../../../client/spotify/model";
 import DefaultImage from "./default.png";

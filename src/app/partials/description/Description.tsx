@@ -1,7 +1,5 @@
 import "./Description.css";
 
-import React from "react";
-
 const Description = (): JSX.Element => (
   <div className="site description">
     Third-party app that lets you unfollow artists or shows in bulk, instead of doing it one at a time. You can choose

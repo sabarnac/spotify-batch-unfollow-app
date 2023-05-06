@@ -1,6 +1,6 @@
 import "./UnfollowFollows.css";
 
-import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 import { FollowType, Follow, getResultTypesForFollowTypes, PERMISSION_OPTIONS } from "../../../client/spotify/model";
 import FollowsRemove from "./partials/FollowsRemove";

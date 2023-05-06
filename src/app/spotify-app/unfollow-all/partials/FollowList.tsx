@@ -1,6 +1,6 @@
 import "./FollowList.css";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Follow, FollowType } from "../../../../client/spotify/model";
 import Loading from "../../../partials/loading/Loading";

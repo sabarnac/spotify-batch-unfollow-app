@@ -1,6 +1,6 @@
 import "./FollowListOptions.css";
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import Input from "../../partials/input/Input";
 import Select from "../../partials/select/Select";
@@ -44,31 +44,38 @@ const FollowListOptions = ({
     <div className="follow-list-options">
       <h2>Options</h2>
       <div className="type-option">
+        <span>Types:</span>
         {PERMISSION_OPTIONS.filter(({ permission }) => permissions.has(permission)).map((option) => (
-          <label key={option.id}>
-            <Checkbox
-              checked={followTypes.includes(option.id)}
-              disabled={followTypes.includes(option.id) && followTypes.length === 1}
-              onChange={(isChecked) =>
-                isChecked
-                  ? setFollowTypes?.(...new Set([...followTypes, option.id]))
-                  : setFollowTypes?.(...new Set(followTypes.filter((type) => type !== option.id)))
-              }
-            />
-            <span>{option.label}</span>
-          </label>
+          <div key={option.id} className={`option-${option.id}`}>
+            <label>
+              <Checkbox
+                checked={followTypes.includes(option.id)}
+                disabled={followTypes.includes(option.id) && followTypes.length === 1}
+                onChange={(isChecked) =>
+                  isChecked
+                    ? setFollowTypes?.(...new Set([...followTypes, option.id]))
+                    : setFollowTypes?.(...new Set(followTypes.filter((type) => type !== option.id)))
+                }
+              />
+              <span>{option.label}</span>
+            </label>
+          </div>
         ))}
       </div>
       <hr />
       {!isNullOrUndefined(filterString) && !isNullOrUndefined(setFilterString) ? (
         <div className="filter-option">
-          <label>Search:</label>
-          <Input value={filterString} onChange={setFilterString} />
+          <label>
+            <span>Search:</span>
+            <Input value={filterString} onChange={setFilterString} />
+          </label>
         </div>
       ) : null}
       <div className="view-option">
-        <label>Results per page:</label>
-        <Select value={viewSize} onChange={setViewSize} options={VIEW_OPTIONS} />
+        <label>
+          <span>Results per page:</span>
+          <Select value={viewSize} onChange={setViewSize} options={VIEW_OPTIONS} />
+        </label>
       </div>
       <button
         className="warning"

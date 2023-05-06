@@ -1,7 +1,5 @@
 import "./AllFollows.css";
 
-import React from "react";
-
 import { useGetAllUserArtistFollows } from "../../../client/spotify";
 import { RESULTS_TYPE_NAME_LC, Follow, FollowType, getFollowTypeText } from "../../../client/spotify/model";
 import FollowList from "./partials/FollowList";

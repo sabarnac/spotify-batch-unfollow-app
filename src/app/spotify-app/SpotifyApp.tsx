@@ -1,6 +1,6 @@
 import "./SpotifyApp.css";
 
-import React, { lazy, Suspense, useCallback, useEffect, useMemo } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo } from "react";
 import { useOAuth2 } from "@tasoskakour/react-use-oauth2";
 
 import SpotifyConfig from "../../client/spotify/api/config";
