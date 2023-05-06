@@ -30,6 +30,8 @@ const useStreamCall = <A extends any[], R>(
     (async () => {
       try {
         for await (const newResult of apiCall(...apiArguments)) {
+          setLoading(true);
+
           if (abort) {
             break;
           }

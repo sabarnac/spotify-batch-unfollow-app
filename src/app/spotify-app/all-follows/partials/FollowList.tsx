@@ -9,20 +9,20 @@ import FollowListOptions, { ViewSize } from "../../list-options/FollowListOption
 import ListLegend from "./ListLegend";
 
 interface FollowListProps {
+  loading: boolean;
   followTypes: FollowType[];
   follows: Follow[];
   selectedFollows: Follow[];
-  loadingResults: boolean;
   setFollowTypes: (...type: FollowType[]) => void;
   addFollow: (followToAdd: Follow) => void;
   removeFollow: (followToRemove: Follow) => void;
 }
 
 const FollowList = ({
+  loading,
   followTypes,
   follows,
   selectedFollows,
-  loadingResults,
   setFollowTypes,
   addFollow,
   removeFollow,
@@ -48,8 +48,16 @@ const FollowList = ({
         <div className="results-view">
           <h2 className="list-title">Select {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)} to unfollow</h2>
           <ListLegend />
+          {loading && (
+            <>
+              <div className="warning loading-message">
+                Retrieving followed {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}
+              </div>
+              <Loading />
+            </>
+          )}
           <div className="artist-list">
-            {follows.length === 0 && (
+            {!loading && follows.length === 0 && (
               <div className="error loading-message">
                 No followed {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)} found
               </div>
@@ -69,7 +77,6 @@ const FollowList = ({
                 );
               })}
           </div>
-          {loadingResults && <Loading />}
           <div className="pagination">
             <button
               className="previous"

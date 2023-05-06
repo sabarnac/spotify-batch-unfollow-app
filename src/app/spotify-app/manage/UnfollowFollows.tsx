@@ -27,8 +27,6 @@ const UnfollowFollows = (): JSX.Element => {
 
   const followTypeList = useMemo(() => [...followTypes], [followTypes]);
 
-  console.log(followTypeList);
-
   useEffect(() => {
     setFollowsToRemove((follows) => {
       [...follows]
@@ -40,7 +38,6 @@ const UnfollowFollows = (): JSX.Element => {
 
   const updateFollowTypes = useCallback(
     (...followTypes: FollowType[]) => {
-      console.log("Updating", followTypes);
       setFollowTypes(new Set(followTypes));
     },
     [setFollowTypes],

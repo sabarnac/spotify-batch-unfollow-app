@@ -4,14 +4,17 @@ import { BATCH_SIZE } from "./config";
 import getUserShowFollows from "./get-user-show-follows";
 
 const getAllUserShowFollows = async function* () {
-  let next = undefined;
+  let offset = undefined;
 
   do {
-    const results: FollowedShowsList = await getUserShowFollows(BATCH_SIZE, next);
+    const results: FollowedShowsList = await getUserShowFollows(BATCH_SIZE, offset);
     yield results.items.map(({ show }) => show);
 
-    next = results.next;
-  } while (!isNullOrUndefined(next));
+    offset = results.offset + results.limit;
+    if (offset >= results.total) {
+      offset = undefined;
+    }
+  } while (!isNullOrUndefined(offset));
 };
 
 export default getAllUserShowFollows;

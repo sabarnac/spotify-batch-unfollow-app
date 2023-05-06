@@ -4,7 +4,6 @@ import React from "react";
 
 import { useGetAllUserArtistFollows } from "../../../client/spotify";
 import { RESULTS_TYPE_NAME_LC, Follow, FollowType, getFollowTypeText } from "../../../client/spotify/model";
-import Loading from "../../partials/loading/Loading";
 import FollowList from "./partials/FollowList";
 
 interface AllFollowsProps {
@@ -43,23 +42,17 @@ const AllFollows = ({
           </ul>
         </div>
       )}
-      {errors.length === 0 && loading && (
-        <div className="warning loading-message">
-          Retrieving followed {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}
-        </div>
-      )}
-      {errors.length === 0 && loading && follows.length === 0 && <Loading />}
-      {errors.length === 0 && (
+      {
         <FollowList
+          loading={loading}
           followTypes={followTypes}
           setFollowTypes={setFollowTypes}
-          loadingResults={errors.length === 0 && loading}
           follows={follows}
           selectedFollows={selectedFollows}
           addFollow={addFollowToRemovalList}
           removeFollow={removeFollowFromRemovalList}
         />
-      )}
+      }
     </div>
   );
 };
