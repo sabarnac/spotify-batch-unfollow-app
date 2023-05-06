@@ -2,7 +2,7 @@ import "./FollowsRemove.css";
 
 import { useState } from "react";
 
-import { FOLLOW_TYPE_RESULT_TYPE_MAP, Follow, FollowType, getFollowTypeText } from "../../../../client/spotify/model";
+import { Follow, FollowType, getFollowTypeText } from "../../../../client/spotify/model";
 import UnfollowAll from "../../unfollow-all/UnfollowAll";
 import { RESULTS_TYPE_NAME_LC } from "../../../../client/spotify/model";
 
