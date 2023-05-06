@@ -1,4 +1,4 @@
-div.artist {
+div.follow {
   display: inline-flex;
   flex-direction: column;
   padding: 2rem 1rem;
@@ -8,48 +8,48 @@ div.artist {
   border-radius: 1rem;
 }
 
-div.artist.clickable {
+div.follow.clickable {
   cursor: pointer;
 }
 
-div.artist.selected {
+div.follow.selected {
   border: 1px solid #0055ff;
   background: #0055ff;
 }
 
-div.artist.succeeded {
+div.follow.succeeded {
   border: 1px solid #1aa34a;
   background: #1aa34a;
 }
 
-div.artist.failed {
+div.follow.failed {
   border: 1px solid #ee0000;
   background: #ee0000;
 }
 
-div.artist div.avatar img {
+div.follow div.avatar img {
   height: 10rem;
   width: 10rem;
 }
 
-div.artist h3.name {
+div.follow h3.name {
   text-align: center;
   margin-bottom: 0;
 }
 
-div.artist div.description {
+div.follow div.description {
   border-top: 1px solid #d8f3e0;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
 }
 
-div.artist a.artist-link{
+div.follow a.follow-link{
   display: inline-flex;
   align-items: center;
   padding-top: 1rem;
 }
 
-div.artist a.artist-link img.spotify-link-logo {
+div.follow a.follow-link img.spotify-link-logo {
   display: inline-block;
   padding-left: 0.5rem;
   height: 2rem;

@@ -1,3 +1,4 @@
+import { isNullOrUndefined } from "../../../util";
 import retryFetch, { FetchError } from "../../../util/retry-fetch";
 import config, { SPOTIFY_API_URL } from "../api/config";
 
@@ -8,7 +9,7 @@ const createQueryPath = (queryObj?: RequestQueryParams): string =>
   queryObj
     ? "?" +
       Object.keys(queryObj)
-        .filter((queryKey: string) => queryObj[queryKey] !== undefined && queryObj[queryKey] !== null)
+        .filter((queryKey: string) => !isNullOrUndefined(queryObj[queryKey]))
         .map((queryKey: string) => `${queryKey}=${queryObj[queryKey]}`)
         .join("&")
     : "";

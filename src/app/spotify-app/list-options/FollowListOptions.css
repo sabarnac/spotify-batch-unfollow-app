@@ -1,0 +1,32 @@
+div.follow-list-options {
+  text-align: left;
+  min-width: 260px;
+}
+
+div.follow-list-options div.type-option label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0rem 0rem 1rem 0rem;
+}
+
+div.follow-list-options div.type-option label span {
+  padding: 0rem 1rem;
+}
+
+div.follow-list-options div.filter-option {
+  padding: 0.5rem;
+}
+
+div.follow-list-options div.view-option {
+  padding: 0.5rem;
+}
+
+div.follow-list-options label {
+  display: block;
+  padding-bottom: 0.25rem;
+}
+
+div.follow-list-options button {
+  margin-top: 1rem;
+  width: 100%;
+}

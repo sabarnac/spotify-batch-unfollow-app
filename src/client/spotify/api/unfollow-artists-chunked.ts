@@ -1,6 +1,5 @@
 import arrayChunk from "../../../util/array-chunk";
-import { FetchError } from "../../../util/retry-fetch";
-import { Artist } from "../model";
+import { Artist, UnfollowChunkedFailureResult, UnfollowChunkedSuccessResult } from "../model";
 import { BATCH_SIZE } from "./config";
 import unfollowArtists from "./unfollow-artists";
 
@@ -9,15 +8,13 @@ const unfollowArtistsChunked = async function* (artists: Artist[]) {
     try {
       await unfollowArtists(chunkedArtists);
       yield {
-        failedArtists: [] as Artist[],
-        succeededArtists: chunkedArtists,
-      };
+        succeeded: chunkedArtists,
+      } as UnfollowChunkedSuccessResult<Artist>;
     } catch (error) {
       yield {
-        failedArtists: chunkedArtists,
-        succeededArtists: [] as Artist[],
-        error: error as FetchError,
-      };
+        failed: chunkedArtists,
+        error: error,
+      } as UnfollowChunkedFailureResult<Artist>;
     }
   }
 };

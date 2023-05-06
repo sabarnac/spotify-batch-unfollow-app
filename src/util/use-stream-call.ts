@@ -6,7 +6,7 @@ interface Generator<A extends any[], T, TReturn = any, TNext = unknown> {
   (...args: A): AsyncGenerator<T, TReturn, TNext>;
 }
 
-type UseCallResult<R> = [R[], boolean, Error | undefined];
+export type UseCallResult<R> = [R[], boolean, Error | undefined];
 
 const useStreamCall = <A extends any[], R>(
   apiCall: Generator<A, R>,
@@ -30,19 +30,21 @@ const useStreamCall = <A extends any[], R>(
     (async () => {
       try {
         for await (const newResult of apiCall(...apiArguments)) {
-          if (abort === false) {
-            setResult((oldResult) => [...oldResult, newResult]);
+          if (abort) {
+            break;
           }
+
+          setResult((oldResult) => [...oldResult, newResult]);
         }
-        if (abort === false) {
-          setLoading(false);
-        }
+
+        setLoading(false);
       } catch (error) {
         const errorObj = error as FetchError;
-        if (errorObj.name !== "AbortError" && abort === false) {
+        if (errorObj.name !== "AbortError" && !abort) {
           setError(errorObj);
-          setLoading(false);
         }
+
+        setLoading(false);
       }
     })();
 

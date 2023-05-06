@@ -4,8 +4,8 @@ import React from "react";
 
 const Description = (): JSX.Element => (
   <div className="site description">
-    Third-party app that lets you unfollow artists in bulk, instead of doing it one at a time. You can choose not to
-    unfollow certain artists by deselecting them before unfollowing.
+    Third-party app that lets you unfollow artists or shows in bulk, instead of doing it one at a time. You can choose
+    not to unfollow certain artists or shows by deselecting them before unfollowing.
   </div>
 );
 

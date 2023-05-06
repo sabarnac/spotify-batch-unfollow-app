@@ -30,16 +30,18 @@ const useCall = <A extends any[], R>(
     (async () => {
       try {
         const callResult = await apiCall(...apiArguments);
-        if (abort === false) {
+        if (!abort) {
           setResult(callResult);
-          setLoading(false);
         }
+
+        setLoading(false);
       } catch (error) {
         const errorObj = error as FetchError;
-        if (errorObj.name !== "AbortError" && abort === false) {
+        if (errorObj.name !== "AbortError" && !abort) {
           setError(errorObj);
-          setLoading(false);
         }
+
+        setLoading(false);
       }
     })();
 

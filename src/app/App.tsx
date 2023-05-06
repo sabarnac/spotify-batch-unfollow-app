@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { OAuthCallback } from "react-oauth2-hook";
+import { OAuthPopup } from "@tasoskakour/react-use-oauth2";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Description from "./partials/description/Description";
@@ -17,7 +17,7 @@ const App = (): JSX.Element => (
       <div>
         <Suspense fallback={<Loading />}>
           <Routes>
-            <Route path="/callback" element={<OAuthCallback />} />
+            <Route path="/callback" element={<OAuthPopup />} />
             <Route path="*" element={<SpotifyApp />} />
           </Routes>
         </Suspense>

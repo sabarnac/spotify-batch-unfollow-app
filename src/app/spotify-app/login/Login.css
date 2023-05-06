@@ -3,6 +3,19 @@ div.login {
   text-align: center;
 }
 
+div.login div.permission-options, div.login div.permission-options > div {
+  padding: 0rem 0rem 1rem 0rem;
+}
+
+div.login div.permission-options > div label {
+  display: inline-flex;
+  align-items: center;
+}
+
+div.login div.permission-options > div label span {
+  padding: 0rem 1rem;
+}
+
 div.login button {
   font-size: 1.2rem;
 }

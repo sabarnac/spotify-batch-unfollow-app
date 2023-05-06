@@ -2,6 +2,10 @@ div.all-follows-list div.results-table {
   display: flex;
 }
 
+div.all-follows-list div.results-table div.loading-message {
+  margin: 1rem;
+}
+
 div.all-follows-list div.results-table div.results-table-options {
   flex-grow: 1;
 }

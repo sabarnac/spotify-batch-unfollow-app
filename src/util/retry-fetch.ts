@@ -90,7 +90,7 @@ const handleFetchResponse = async (
     countInfo.attemptCount++;
     performFetch(resolve, reject, response, countInfo, url, requestContext, retryableErrorCodes);
   } else {
-    reject(new FetchError(response.status, await response.json(), response.headers));
+    reject(new FetchError(response.status, (await response.json()).error.message, response.headers));
   }
 };
 

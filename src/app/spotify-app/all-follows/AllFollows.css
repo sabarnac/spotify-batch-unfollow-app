@@ -1,0 +1,8 @@
+div.all-follows {
+  padding: 1rem;
+  text-align: center;
+}
+
+div.all-follows div.loading-message {
+  margin: 1rem;
+}

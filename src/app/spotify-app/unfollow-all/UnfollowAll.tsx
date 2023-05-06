@@ -1,77 +1,109 @@
 import "./UnfollowAll.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import { useUnfollowArtistsChunked } from "../../../client/spotify";
-import { Artist } from "../../../client/spotify/model";
-import { ArtistStatus } from "../artist/ArtistInfo";
-import ArtistList, { ArtistWithError } from "./partials/ArtistList";
+import { useUnfollowFollowsChunked } from "../../../client/spotify";
+import {
+  RESULTS_TYPE_NAME_LC,
+  Follow,
+  FollowType,
+  getFollowTypeText,
+  UnfollowChunkedResult,
+  isChunkedSuccessResult,
+} from "../../../client/spotify/model";
+import { FollowStatus } from "../follow/FollowInfo";
+import FollowList from "./partials/FollowList";
+import { FetchError } from "../../../util/retry-fetch";
 
 interface UnfollowAllProps {
-  artists: Artist[];
+  followTypes: FollowType[];
+  follows: Follow[];
   onComplete: () => void;
 }
 
-const getInProgressArtist = (artist: Artist) => ({
-  ...artist,
-  status: ArtistStatus.SELECTED,
+type FollowWithError = { follow: Follow; error: FetchError };
+
+const getInProgressFollow = (follow: Follow) => ({
+  follow,
+  status: "selected" as FollowStatus,
 });
-const getSucceededArtist = (artist: Artist) => ({
-  ...artist,
-  status: ArtistStatus.SUCCEEEDED,
+const getSucceededFollow = (follow: Follow) => ({
+  follow,
+  status: "succeeded" as FollowStatus,
 });
-const getFailedArtist = (artist: ArtistWithError) => ({
-  ...artist,
-  status: ArtistStatus.FAILED,
+const getFailedFollow = (follow: FollowWithError) => ({
+  ...follow,
+  status: "failed" as FollowStatus,
 });
 
-const UnfollowAll = ({ artists, onComplete }: UnfollowAllProps) => {
-  const [resultsChunked, loading, error] = useUnfollowArtistsChunked(artists);
-  const [failedArtists, setFailedArtists] = useState<ArtistWithError[]>([]);
-  const [succeededArtists, setSucceededArtists] = useState<Artist[]>([]);
+const UnfollowAll = ({ followTypes, follows, onComplete }: UnfollowAllProps) => {
+  const [failedFollows, setFailedFollows] = useState<FollowWithError[]>([]);
+  const [succeededFollows, setSucceededFollows] = useState<Follow[]>([]);
+
+  const newUnfollowsHandler = useCallback(
+    (newUnfollows: UnfollowChunkedResult<Follow>) => {
+      if (isChunkedSuccessResult(newUnfollows)) {
+        setSucceededFollows((succeededFollows) => [...succeededFollows, ...newUnfollows.succeeded]);
+      } else {
+        setFailedFollows((failedFollows) => [
+          ...failedFollows,
+          ...newUnfollows.failed.map((follow) => ({ follow, error: newUnfollows.error })),
+        ]);
+      }
+    },
+    [setSucceededFollows, setFailedFollows],
+  );
+
+  const [resultsChunked, loading, errors] = useUnfollowFollowsChunked(follows, newUnfollowsHandler);
 
   useEffect(() => {
-    setFailedArtists(
-      resultsChunked
-        .map((results) =>
-          results.failedArtists.map((artist) => ({
-            ...artist,
-            error: results.error,
-          })),
-        )
-        .flat(),
-    );
-    setSucceededArtists(resultsChunked.map((results) => results.succeededArtists).flat());
-  }, [resultsChunked]);
-
-  useEffect(() => {
-    const totalAttemptedArtists = failedArtists.length + succeededArtists.length;
-    if (!error && !loading && !!resultsChunked && totalAttemptedArtists === artists.length) {
+    const totalAttemptedFollows = failedFollows.length + succeededFollows.length;
+    if (errors.length === 0 && !loading && !!resultsChunked && totalAttemptedFollows === follows.length) {
       onComplete();
     }
-  }, [error, loading, resultsChunked, onComplete, failedArtists, succeededArtists, artists]);
+  }, [errors, loading, resultsChunked, onComplete, failedFollows, succeededFollows, follows]);
+
   return (
     <div className="unfollow-all-list">
-      <ArtistList
-        artists={[
-          ...artists
-            .filter((artist) => !failedArtists.find((failedArtist) => failedArtist.id === artist.id))
-            .filter((artist) => succeededArtists.indexOf(artist) === -1)
-            .map(getInProgressArtist),
-          ...failedArtists.map(getFailedArtist),
-          ...succeededArtists.map(getSucceededArtist),
+      <FollowList
+        followTypes={followTypes}
+        follows={[
+          ...failedFollows.map(getFailedFollow),
+          ...follows
+            .filter((Follow) => !failedFollows.find((failedFollow) => failedFollow.follow.id === Follow.id))
+            .filter((Follow) => succeededFollows.indexOf(Follow) === -1)
+            .map(getInProgressFollow),
+          ...succeededFollows.map(getSucceededFollow),
         ]}
-        unfollowing={!error && loading}
-        completed={!error && !loading && !!resultsChunked}
+        unfollowing={errors.length === 0 && loading}
+        completed={errors.length === 0 && !loading && !!resultsChunked}
         header={
           <>
-            {error && <div className="error loading-message">Error unfollowing artists: {error.message}</div>}
-            {!error && loading && <div className="warning loading-message">Unfollowing artists</div>}
-            {!error && !loading && resultsChunked.length > 0 && failedArtists.length === 0 && (
-              <div className="success loading-message">Unfollowed all artists!</div>
+            {errors.length > 0 && (
+              <div className="error loading-message">
+                Error unfollowing {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}:
+                <ul>
+                  {errors.map((error, i) => (
+                    <li key={i}>{error.message}</li>
+                  ))}
+                </ul>
+              </div>
             )}
-            {!error && !loading && resultsChunked.length > 0 && failedArtists.length > 0 && (
-              <div className="error loading-message">Could not unfollow some artists! Failed artists listed below</div>
+            {errors.length === 0 && loading && (
+              <div className="warning loading-message">
+                Unfollowing {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}
+              </div>
+            )}
+            {errors.length === 0 && !loading && resultsChunked.length > 0 && failedFollows.length === 0 && (
+              <div className="success loading-message">
+                Unfollowed all {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}!
+              </div>
+            )}
+            {errors.length === 0 && !loading && resultsChunked.length > 0 && failedFollows.length > 0 && (
+              <div className="error loading-message">
+                Could not unfollow some {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)}! Failed{" "}
+                {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)} listed below
+              </div>
             )}
           </>
         }

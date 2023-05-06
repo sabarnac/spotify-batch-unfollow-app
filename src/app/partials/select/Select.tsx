@@ -14,10 +14,11 @@ const isOption = <K, V>(option: unknown): option is SelectOption<K, V> =>
 interface SelectProps<K, V> {
   options: SelectOption<K, V>[];
   value: K;
-  onChange: (id: K) => void;
+  disabled?: boolean;
+  onChange?: (id: K) => void;
 }
 
-const Select = <K, V>({ options, value, onChange }: SelectProps<K, V>): JSX.Element => (
+const Select = <K, V>({ options, value, disabled = false, onChange }: SelectProps<K, V>): JSX.Element => (
   <ReactSelect
     styles={{
       option: (provided, state) => ({
@@ -45,8 +46,9 @@ const Select = <K, V>({ options, value, onChange }: SelectProps<K, V>): JSX.Elem
       }),
     }}
     captureMenuScroll={false}
+    isDisabled={disabled}
     value={options.find((option) => option.id === value)}
-    onChange={(option) => isOption(option) && onChange(option.id)}
+    onChange={(option) => isOption(option) && onChange?.(option.id)}
     options={options}
   />
 );

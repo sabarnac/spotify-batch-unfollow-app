@@ -1,21 +1,22 @@
-import "./ArtistsRemove.css";
+import "./FollowsRemove.css";
 
 import React, { useState } from "react";
 
-import { Artist } from "../../../../client/spotify/model";
+import { Follow, FollowType } from "../../../../client/spotify/model";
 import UnfollowAll from "../../unfollow-all/UnfollowAll";
 
 interface ArtistsRemoveProps {
-  artists: Artist[];
+  followTypes: FollowType[];
+  follows: Follow[];
   restartUnfollow: () => void;
 }
 
-const ArtistsRemove = ({ artists, restartUnfollow }: ArtistsRemoveProps): JSX.Element => {
+const ArtistsRemove = ({ followTypes, follows, restartUnfollow }: ArtistsRemoveProps): JSX.Element => {
   const [allowRestart, setAllowRestart] = useState(false);
 
   return (
     <div className="artists-remove">
-      <UnfollowAll artists={artists} onComplete={() => setAllowRestart(true)} />
+      <UnfollowAll followTypes={followTypes} follows={follows} onComplete={() => setAllowRestart(true)} />
       {allowRestart && (
         <div className="restart-unfollow">
           <button className="info" disabled={!allowRestart} onClick={restartUnfollow}>
