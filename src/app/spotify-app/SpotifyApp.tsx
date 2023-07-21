@@ -27,7 +27,7 @@ const SpotifyApp = (): JSX.Element => {
   const permissionsOptionsSet = useMemo(() => new Set(permissionOptions), [permissionOptions]);
 
   const spotifyPermissionScopes = useMemo(
-    () => permissionOptions.flatMap((option) => SPOTIFY_PERMISSION_OPTIONS_MAP[option]),
+    () => [...new Set(permissionOptions.flatMap((option) => SPOTIFY_PERMISSION_OPTIONS_MAP[option]))],
     [permissionOptions],
   );
 

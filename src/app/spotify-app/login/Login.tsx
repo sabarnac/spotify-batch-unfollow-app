@@ -24,7 +24,11 @@ const Login = ({
           <label>
             <Checkbox
               checked={permissionOptions.includes("artists-users")}
-              disabled={permissionOptions.includes("artists-users") && permissionOptions.length === 1}
+              disabled={
+                permissionOptions.includes("artists-users") &&
+                permissionOptions.length === 1 &&
+                !permissionOptions.includes("read-saved-tracks-episodes")
+              }
               onChange={(isChecked) =>
                 isChecked ? addPermissionOption("artists-users") : removePermissionOption("artists-users")
               }
@@ -36,10 +40,28 @@ const Login = ({
           <label>
             <Checkbox
               checked={permissionOptions.includes("shows")}
-              disabled={permissionOptions.includes("shows") && permissionOptions.length === 1}
+              disabled={
+                permissionOptions.includes("shows") &&
+                permissionOptions.length === 1 &&
+                !permissionOptions.includes("read-saved-tracks-episodes")
+              }
               onChange={(isChecked) => (isChecked ? addPermissionOption("shows") : removePermissionOption("shows"))}
             />
             <span>Read/Modify Followed Shows (Podcasts)</span>
+          </label>
+        </div>
+        <div className="read-saved-tracks">
+          <label>
+            <Checkbox
+              checked={permissionOptions.includes("read-saved-tracks-episodes") || permissionOptions.includes("shows")}
+              disabled={permissionOptions.includes("shows")}
+              onChange={(isChecked) =>
+                isChecked
+                  ? addPermissionOption("read-saved-tracks-episodes")
+                  : removePermissionOption("read-saved-tracks-episodes")
+              }
+            />
+            <span>Read Saved Tracks (Used For Filtering)</span>
           </label>
         </div>
       </div>

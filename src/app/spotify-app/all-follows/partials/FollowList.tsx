@@ -1,6 +1,6 @@
 import "./FollowList.css";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { RESULTS_TYPE_NAME_LC, Follow, FollowType, getFollowTypeText } from "../../../../client/spotify/model";
 import Loading from "../../../partials/loading/Loading";
@@ -14,8 +14,8 @@ interface FollowListProps {
   follows: Follow[];
   selectedFollows: Follow[];
   setFollowTypes: (...type: FollowType[]) => void;
-  addFollow: (followToAdd: Follow) => void;
-  removeFollow: (followToRemove: Follow) => void;
+  addFollows: (...followToAdd: Follow[]) => void;
+  removeFollows: (...followToRemove: Follow[]) => void;
 }
 
 const FollowList = ({
@@ -24,25 +24,57 @@ const FollowList = ({
   follows,
   selectedFollows,
   setFollowTypes,
-  addFollow,
-  removeFollow,
+  addFollows,
+  removeFollows,
 }: FollowListProps): JSX.Element => {
   const [viewSize, setViewSize] = useState(ViewSize.TEN);
   const [filterString, setFilterString] = useState("");
   const [pageIndex, setPageIndex] = useState(0);
 
+  const filteredFollows = useMemo(
+    () =>
+      follows
+        .filter((follow) => filterString === "" || follow.name.toLowerCase().includes(filterString.toLowerCase()))
+        .map((follow) => ({
+          follow,
+          isSelected: selectedFollows.indexOf(follow) !== -1,
+        })),
+    [follows, filterString, selectedFollows],
+  );
+  const allFilteredFollowsSelected = useMemo(
+    () => filteredFollows.every(({ isSelected }) => isSelected),
+    [filteredFollows],
+  );
+
+  const selectAllFilteredFollows = useCallback(
+    () => addFollows(...filteredFollows.map(({ follow }) => follow)),
+    [filteredFollows, addFollows],
+  );
+  const unselectAllFilteredFollows = useCallback(
+    () => removeFollows(...filteredFollows.map(({ follow }) => follow)),
+    [filteredFollows, removeFollows],
+  );
+
   useEffect(() => {
     setPageIndex(0);
   }, [viewSize, filterString]);
-
-  const filterStringLc = filterString.toLowerCase();
 
   return (
     <div className="all-follows-list">
       <div className="results-table">
         <div className="results-table-options">
           <FollowListOptions
-            {...{ followTypes, setFollowTypes, viewSize, setViewSize, filterString, setFilterString }}
+            {...{
+              followTypes,
+              setFollowTypes,
+              viewSize,
+              setViewSize,
+              filterString,
+              setFilterString,
+              allFilteredFollowsSelected,
+              selectAllFilteredFollows,
+              unselectAllFilteredFollows,
+            }}
           />
         </div>
         <div className="results-view">
@@ -62,20 +94,14 @@ const FollowList = ({
                 No followed {getFollowTypeText(RESULTS_TYPE_NAME_LC, ...followTypes)} found
               </div>
             )}
-            {follows
-              .filter((follow) => filterStringLc === "" || follow.name.toLowerCase().includes(filterStringLc))
-              .slice(pageIndex * viewSize, (pageIndex + 1) * viewSize)
-              .map((follow) => {
-                const isSelected = selectedFollows.indexOf(follow) !== -1;
-                return (
-                  <FollowInfo
-                    key={follow.id}
-                    status={isSelected ? "selected" : undefined}
-                    follow={follow}
-                    onClick={() => (isSelected ? removeFollow(follow) : addFollow(follow))}
-                  />
-                );
-              })}
+            {filteredFollows.slice(pageIndex * viewSize, (pageIndex + 1) * viewSize).map(({ isSelected, follow }) => (
+              <FollowInfo
+                key={follow.id}
+                status={isSelected ? "selected" : undefined}
+                follow={follow}
+                onClick={() => (isSelected ? removeFollows(follow) : addFollows(follow))}
+              />
+            ))}
           </div>
           <div className="pagination">
             <button

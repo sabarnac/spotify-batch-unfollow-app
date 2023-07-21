@@ -28,6 +28,9 @@ interface FollowListOptionsProps {
   setViewSize: (size: ViewSize) => void;
   filterString?: string;
   setFilterString?: (filterString: string) => void;
+  allFilteredFollowsSelected?: boolean;
+  selectAllFilteredFollows?: () => void;
+  unselectAllFilteredFollows?: () => void;
 }
 
 const FollowListOptions = ({
@@ -37,6 +40,9 @@ const FollowListOptions = ({
   setViewSize,
   filterString,
   setFilterString,
+  allFilteredFollowsSelected,
+  selectAllFilteredFollows,
+  unselectAllFilteredFollows,
 }: FollowListOptionsProps): JSX.Element => {
   const { permissions } = useContext(AppContext);
 
@@ -84,8 +90,18 @@ const FollowListOptions = ({
           setViewSize(ViewSize.TEN);
         }}
       >
-        Reset
+        Reset filters
       </button>
+      {!isNullOrUndefined(allFilteredFollowsSelected) &&
+      !isNullOrUndefined(selectAllFilteredFollows) &&
+      !isNullOrUndefined(unselectAllFilteredFollows) ? (
+        <button
+          className="success"
+          onClick={allFilteredFollowsSelected ? unselectAllFilteredFollows : selectAllFilteredFollows}
+        >
+          {allFilteredFollowsSelected ? "De-select filtered entries" : "Select filtered entries"}
+        </button>
+      ) : null}
     </div>
   );
 };

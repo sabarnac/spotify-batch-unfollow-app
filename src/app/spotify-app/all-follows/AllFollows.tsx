@@ -21,13 +21,6 @@ const AllFollows = ({
 }: AllFollowsProps): JSX.Element => {
   const [follows, loading, errors] = useGetAllUserArtistFollows(followTypes, addFollowsForRemoval);
 
-  const addFollowToRemovalList = (follow: Follow) => {
-    addFollowsForRemoval(follow);
-  };
-  const removeFollowFromRemovalList = (follow: Follow) => {
-    removeFollowsFromRemoval(follow);
-  };
-
   return (
     <div className="all-follows">
       {errors.length > 0 && (
@@ -47,8 +40,8 @@ const AllFollows = ({
           setFollowTypes={setFollowTypes}
           follows={follows}
           selectedFollows={selectedFollows}
-          addFollow={addFollowToRemovalList}
-          removeFollow={removeFollowFromRemovalList}
+          addFollows={addFollowsForRemoval}
+          removeFollows={removeFollowsFromRemoval}
         />
       }
     </div>

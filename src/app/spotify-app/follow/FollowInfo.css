@@ -46,6 +46,7 @@ div.follow div.description {
 div.follow a.follow-link{
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding-top: 1rem;
 }
 

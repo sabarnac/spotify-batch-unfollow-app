@@ -2,10 +2,11 @@
 
 import { FetchError } from "../../util/retry-fetch";
 
-export type SpotifyPermissionOptions = "artists-users" | "shows";
+export type SpotifyPermissionOptions = "artists-users" | "read-saved-tracks-episodes" | "shows";
 
 export const SPOTIFY_PERMISSION_OPTIONS_MAP: Record<SpotifyPermissionOptions, string[]> = {
   "artists-users": ["user-follow-read", "user-follow-modify"],
+  "read-saved-tracks-episodes": ["user-library-read"],
   shows: ["user-library-read", "user-library-modify"],
 };
 
