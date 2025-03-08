@@ -10,7 +10,7 @@ const createQueryPath = (queryObj?: RequestQueryParams): string =>
     ? "?" +
       Object.keys(queryObj)
         .filter((queryKey: string) => !isNullOrUndefined(queryObj[queryKey]))
-        .map((queryKey: string) => `${queryKey}=${queryObj[queryKey]}`)
+        .map((queryKey: string) => `${queryKey}=${encodeURIComponent(queryObj[queryKey]!)}`)
         .join("&")
     : "";
 

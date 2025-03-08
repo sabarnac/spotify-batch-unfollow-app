@@ -6,10 +6,9 @@ const unfollowUsers = async (users: FollowedUser[]) =>
     ["me", "following"],
     {
       type: "user",
+      ids: users.map((user: FollowedUser): string => user.id).join(","),
     },
-    JSON.stringify({
-      ids: users.map((user: FollowedUser): string => user.id),
-    }),
+    null,
     { "Content-Type": "application/json" },
     "DELETE",
   );

@@ -6,10 +6,9 @@ const unfollowArtists = async (artists: Artist[]) =>
     ["me", "following"],
     {
       type: "artist",
+      ids: artists.map((artist: Artist): string => artist.id).join(","),
     },
-    JSON.stringify({
-      ids: artists.map((artist: Artist): string => artist.id),
-    }),
+    null,
     { "Content-Type": "application/json" },
     "DELETE",
   );
