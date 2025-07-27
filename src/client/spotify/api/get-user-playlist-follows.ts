@@ -4,7 +4,7 @@ import sendRequest from "../util/send-request";
 
 const getUserPlaylistFollows = async (user: UserInfo, limit: number, offset?: number) =>
   await getJsonResponse<PlaylistFollowsResponse>(
-    await sendRequest(["users", user.id, "playlists"], {
+    await sendRequest(["me", "playlists"], {
       limit,
       offset,
     }),
