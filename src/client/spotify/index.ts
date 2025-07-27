@@ -8,14 +8,20 @@ import unfollowArtistsChunked from "./api/unfollow-artists-chunked";
 import unfollowShowsChunked from "./api/unfollow-shows-chunked";
 import unfollowUsersChunked from "./api/unfollow-users-chunked";
 import {
+  Album,
   Artist,
   Follow,
   FollowType,
   FollowedUser,
+  Playlist,
   Show,
   UnfollowChunkedResult,
   getResultTypesForFollowTypes,
 } from "./model";
+import getAllUserAlbumFollows from "./api/get-all-user-album-follows";
+import unfollowAlbumsChunked from "./api/unfollow-albums-chunked";
+import getAllUserPlaylistFollows from "./api/get-all-user-playlist-follows";
+import unfollowPlaylistsChunked from "./api/unfollow-playliss-chunked";
 
 export const useGetCurrentUser = (runNow: boolean = true) => useCall(getCurrentUser, runNow);
 
@@ -61,6 +67,14 @@ export const useGetAllUserArtistFollows = (
     getAllUserShowFollows,
     runNow && followTypes.includes("SHOW"),
   );
+  const [followedAlbums, loadingAlbums, albumError] = useStreamCall(
+    getAllUserAlbumFollows,
+    runNow && followTypes.includes("ALBUM"),
+  );
+  const [followedPlaylists, loadingPlaylists, playlistError] = useStreamCall(
+    getAllUserPlaylistFollows,
+    runNow && followTypes.includes("PLAYLIST"),
+  );
 
   const [allFollows, setAllFollows] = useState<Follow[]>([]);
 
@@ -76,19 +90,33 @@ export const useGetAllUserArtistFollows = (
     () => updateAllFollowsList(setAllFollows, newFollowsHandler, followedShows),
     [followedShows, newFollowsHandler, setAllFollows],
   );
+  useEffect(
+    () => updateAllFollowsList(setAllFollows, newFollowsHandler, followedAlbums),
+    [followedAlbums, newFollowsHandler, setAllFollows],
+  );
+  useEffect(
+    () => updateAllFollowsList(setAllFollows, newFollowsHandler, followedPlaylists),
+    [followedPlaylists, newFollowsHandler, setAllFollows],
+  );
 
   const [allErrors, setAllErrors] = useState<Error[]>([]);
 
   useEffect(() => updateAllErrorsList(setAllErrors, artistsError), [artistsError, setAllErrors]);
   useEffect(() => updateAllErrorsList(setAllErrors, usersError), [usersError, setAllErrors]);
   useEffect(() => updateAllErrorsList(setAllErrors, showsError), [showsError, setAllErrors]);
+  useEffect(() => updateAllErrorsList(setAllErrors, albumError), [albumError, setAllErrors]);
+  useEffect(() => updateAllErrorsList(setAllErrors, playlistError), [playlistError, setAllErrors]);
 
   useEffect(() => {
     const resultTypes = getResultTypesForFollowTypes(...followTypes);
     setAllFollows((follows) => follows.filter(({ type }) => resultTypes.includes(type)));
   }, [followTypes, setAllFollows, setAllErrors]);
 
-  return [allFollows, loadingArtists || loadingUsers || loadingShows, allErrors] as [Follow[], boolean, Error[]];
+  return [
+    allFollows,
+    loadingArtists || loadingUsers || loadingShows || loadingAlbums || loadingPlaylists,
+    allErrors,
+  ] as [Follow[], boolean, Error[]];
 };
 
 const updateAllUnfollowsList = (
@@ -120,6 +148,11 @@ export const useUnfollowFollowsChunked = (
     [follows],
   );
   const followedShows = useMemo(() => follows.filter((follow): follow is Show => follow.type === "show"), [follows]);
+  const followedAlbums = useMemo(() => follows.filter((follow): follow is Album => follow.type === "album"), [follows]);
+  const followedPlaylists = useMemo(
+    () => follows.filter((follow): follow is Playlist => follow.type === "playlist"),
+    [follows],
+  );
 
   const [unfollowArtists, loadingArtists, artistsError] = useStreamCall(
     unfollowArtistsChunked,
@@ -128,6 +161,12 @@ export const useUnfollowFollowsChunked = (
   );
   const [unfollowUsers, loadingUsers, usersError] = useStreamCall(unfollowUsersChunked, runNow, followedUsers);
   const [unfollowShows, loadingShows, showsError] = useStreamCall(unfollowShowsChunked, runNow, followedShows);
+  const [unfollowAlbums, loadingAlbums, albumsError] = useStreamCall(unfollowAlbumsChunked, runNow, followedAlbums);
+  const [unfollowPlaylists, loadingPlaylists, playlistsError] = useStreamCall(
+    unfollowPlaylistsChunked,
+    runNow,
+    followedPlaylists,
+  );
 
   const [allUnfollows, setAllUnfollows] = useState<UnfollowChunkedResult<Follow>[]>([]);
 
@@ -143,16 +182,26 @@ export const useUnfollowFollowsChunked = (
     () => updateAllUnfollowsList(setAllUnfollows, newUnfollowsHandler, unfollowShows),
     [unfollowShows, newUnfollowsHandler, setAllUnfollows],
   );
+  useEffect(
+    () => updateAllUnfollowsList(setAllUnfollows, newUnfollowsHandler, unfollowAlbums),
+    [unfollowAlbums, newUnfollowsHandler, setAllUnfollows],
+  );
+  useEffect(
+    () => updateAllUnfollowsList(setAllUnfollows, newUnfollowsHandler, unfollowPlaylists),
+    [unfollowPlaylists, newUnfollowsHandler, setAllUnfollows],
+  );
 
   const [allErrors, setAllErrors] = useState<Error[]>([]);
 
   useEffect(() => updateAllErrorsList(setAllErrors, artistsError), [artistsError, setAllErrors]);
   useEffect(() => updateAllErrorsList(setAllErrors, usersError), [usersError, setAllErrors]);
   useEffect(() => updateAllErrorsList(setAllErrors, showsError), [showsError, setAllErrors]);
+  useEffect(() => updateAllErrorsList(setAllErrors, albumsError), [albumsError, setAllErrors]);
+  useEffect(() => updateAllErrorsList(setAllErrors, playlistsError), [playlistsError, setAllErrors]);
 
-  return [allUnfollows, loadingArtists || loadingUsers || loadingShows, allErrors] as [
-    UnfollowChunkedResult<Follow>[],
-    boolean,
-    Error[],
-  ];
+  return [
+    allUnfollows,
+    loadingArtists || loadingUsers || loadingShows || loadingAlbums || loadingPlaylists,
+    allErrors,
+  ] as [UnfollowChunkedResult<Follow>[], boolean, Error[]];
 };
