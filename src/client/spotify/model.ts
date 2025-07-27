@@ -14,12 +14,7 @@ export const SPOTIFY_PERMISSION_OPTIONS_MAP: Record<SpotifyPermissionOptions, st
   "read-saved-tracks-episodes": ["user-library-read"],
   shows: ["user-library-read", "user-library-modify"],
   albums: ["user-library-read", "user-library-modify"],
-  playlists: [
-    "playlist-read-private",
-    "playlist-read-collaborative",
-    "playlist-modify-public",
-    "playlist-modify-private",
-  ],
+  playlists: ["playlist-read-private", "playlist-modify-public", "playlist-modify-private"],
 };
 
 export type ResultTypes = "user" | "artist" | "show" | "album" | "playlist";
