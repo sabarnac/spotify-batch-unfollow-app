@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkspotify_batch_unfollow_app=self.webpackChunkspotify_batch_unfollow_app||[]).push([[656],{4656:function(n,t,o){o.r(t),o.d(t,{default:function(){return l}});var u=o(2791),a=o(9963),e=o(184),l=function(){var n=(0,u.useContext)(a.Z).logout;return(0,e.jsx)("div",{className:"logout",children:(0,e.jsx)("button",{className:"warning",onClick:n,children:"Logout"})})}}}]);
-//# sourceMappingURL=656.25009afe.chunk.js.map

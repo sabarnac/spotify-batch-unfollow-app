@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkspotify_batch_unfollow_app=self.webpackChunkspotify_batch_unfollow_app||[]).push([[199],{199:(o,t,s)=>{s.r(t),s.d(t,{default:()=>e});var l=s(43),n=s(481),a=s(579);const e=()=>{const{logout:o}=(0,l.useContext)(n.A);return(0,a.jsx)("div",{className:"logout",children:(0,a.jsx)("button",{className:"warning",onClick:o,children:"Logout"})})}}}]);
+//# sourceMappingURL=199.aab0a752.chunk.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/199.5d5ee065.chunk.css","mappings":"AAAA,WACE,iBAAkB,CAClB,iBACF,CAEA,kBACE,gBACF","sources":["app/spotify-app/logout/Logout.css"],"sourcesContent":["div.logout {\n  padding: 2rem 1rem;\n  text-align: center;\n}\n\ndiv.logout button {\n  font-size: 1.2rem;\n}\n"],"names":[],"sourceRoot":""}

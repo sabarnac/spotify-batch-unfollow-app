@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/423.7441152a.chunk.css","mappings":"AAAA,SAGE,+BAAgC,CAChC,aAAc,CAHd,YAAa,CACb,iBAGF","sources":["app/spotify-app/user/UserInfo.css"],"sourcesContent":["div.user {\n  padding: 1rem;\n  text-align: center;\n  border-bottom: 1px solid #d8f3e0;\n  margin: 0 1rem;\n}\n"],"names":[],"sourceRoot":""}
