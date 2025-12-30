@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "https://spotify-bulk-unfollow.com/static/css/main.10e7e021.css",
-    "main.js": "https://spotify-bulk-unfollow.com/static/js/main.def58ff5.js",
+    "main.js": "https://spotify-bulk-unfollow.com/static/js/main.3243db0c.js",
     "static/css/357.8490f80e.chunk.css": "https://spotify-bulk-unfollow.com/static/css/357.8490f80e.chunk.css",
-    "static/js/357.d9c2a8d3.chunk.js": "https://spotify-bulk-unfollow.com/static/js/357.d9c2a8d3.chunk.js",
+    "static/js/357.ecb6a0f9.chunk.js": "https://spotify-bulk-unfollow.com/static/js/357.ecb6a0f9.chunk.js",
     "static/css/866.e10fd924.chunk.css": "https://spotify-bulk-unfollow.com/static/css/866.e10fd924.chunk.css",
     "static/js/866.e88b6588.chunk.js": "https://spotify-bulk-unfollow.com/static/js/866.e88b6588.chunk.js",
     "static/css/807.3027cb3d.chunk.css": "https://spotify-bulk-unfollow.com/static/css/807.3027cb3d.chunk.css",
@@ -18,9 +18,9 @@
     "static/media/default.png": "https://spotify-bulk-unfollow.com/static/media/default.b315bfa5ca1ef960e55f.png",
     "index.html": "https://spotify-bulk-unfollow.com/index.html",
     "main.10e7e021.css.map": "https://spotify-bulk-unfollow.com/static/css/main.10e7e021.css.map",
-    "main.def58ff5.js.map": "https://spotify-bulk-unfollow.com/static/js/main.def58ff5.js.map",
+    "main.3243db0c.js.map": "https://spotify-bulk-unfollow.com/static/js/main.3243db0c.js.map",
     "357.8490f80e.chunk.css.map": "https://spotify-bulk-unfollow.com/static/css/357.8490f80e.chunk.css.map",
-    "357.d9c2a8d3.chunk.js.map": "https://spotify-bulk-unfollow.com/static/js/357.d9c2a8d3.chunk.js.map",
+    "357.ecb6a0f9.chunk.js.map": "https://spotify-bulk-unfollow.com/static/js/357.ecb6a0f9.chunk.js.map",
     "866.e10fd924.chunk.css.map": "https://spotify-bulk-unfollow.com/static/css/866.e10fd924.chunk.css.map",
     "866.e88b6588.chunk.js.map": "https://spotify-bulk-unfollow.com/static/js/866.e88b6588.chunk.js.map",
     "807.3027cb3d.chunk.css.map": "https://spotify-bulk-unfollow.com/static/css/807.3027cb3d.chunk.css.map",
@@ -34,6 +34,6 @@
   },
   "entrypoints": [
     "static/css/main.10e7e021.css",
-    "static/js/main.def58ff5.js"
+    "static/js/main.3243db0c.js"
   ]
 }
