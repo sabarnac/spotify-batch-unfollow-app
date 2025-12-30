@@ -1,16 +1,15 @@
 import "./SpotifyApp.css";
 
-import { lazy, Suspense, useCallback, useEffect, useMemo } from "react";
-import { useOAuth2 } from "@tasoskakour/react-use-oauth2";
+import { lazy, Suspense, useCallback, useMemo } from "react";
 
 import SpotifyConfig from "../../client/spotify/api/config";
-import { SPOTIFY_CLIENT_ID } from "../../constants";
-import useForceUpdate from "../../util/use-force-update";
+import { SPOTIFY_AUTHORIZE_URL, SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URL } from "../../constants";
 import Loading from "../partials/loading/Loading";
 import Login from "./login/Login";
 import { SpotifyPermissionOptions, SPOTIFY_PERMISSION_OPTIONS_MAP } from "../../client/spotify/model";
 import PermissionOptionsStore from "./store/AppContext";
 import useLocalStorageState from "use-local-storage-state";
+import { useOauth2Pkce } from "../../util/use-oauth-pkce";
 
 const UserInfo = lazy(() => import("./user/UserInfo"));
 const UnfollowArtists = lazy(() => import("./manage/UnfollowFollows"));
@@ -31,28 +30,18 @@ const SpotifyApp = (): JSX.Element => {
     [permissionOptions],
   );
 
-  const { data, loading, error, getAuth, logout } = useOAuth2({
-    authorizeUrl: "https://accounts.spotify.com/authorize",
-    scope: spotifyPermissionScopes.join(","),
+  const { data, loading, error, start, logout } = useOauth2Pkce({
+    authorizeUrl: SPOTIFY_AUTHORIZE_URL,
+    scope: spotifyPermissionScopes.join(" "),
     clientId: SPOTIFY_CLIENT_ID,
-    redirectUri: document.location.href.replace(/\/$/, "") + "/callback",
-    responseType: "token",
+    redirectUri: SPOTIFY_REDIRECT_URL,
   });
 
-  const forceUpdate = useForceUpdate();
   SpotifyConfig.resetToken = () => {
     logout();
-    forceUpdate();
   };
 
-  useEffect(() => {
-    if (!!data?.access_token) {
-      SpotifyConfig.userToken = data.access_token;
-    } else {
-      SpotifyConfig.userToken = undefined;
-    }
-    forceUpdate();
-  }, [data, forceUpdate]);
+  SpotifyConfig.userToken = data?.accessToken;
 
   const addPermissionOption = useCallback(
     (permissionOption: SpotifyPermissionOptions) =>
@@ -67,23 +56,40 @@ const SpotifyApp = (): JSX.Element => {
     [setPermissionOptions],
   );
 
+  if (error) {
+    console.error(`Failed logging in due to error: ${error}`);
+  }
+
   return loading ? (
     <Loading text="Logging in" />
   ) : error ? (
-    <div className="login-error">
-      <div className="error">
-        {error === ERROR_CODES.ACCESS_DENIED
-          ? "Could not log in as access was denied during authorization process"
-          : "Could not log in due to an unknown error"}
+    <>
+      <div className="login-error">
+        <div className="error">
+          {error === ERROR_CODES.ACCESS_DENIED
+            ? "Could not log in as access was denied during authorization process"
+            : "Could not log in due to an unknown error"}
+        </div>
       </div>
-    </div>
-  ) : !data?.access_token ? (
+      <div className="login-error">
+        <div className="warning">Try again below</div>
+      </div>
+      <Login
+        onClick={start}
+        permissionOptions={permissionOptions}
+        addPermissionOption={addPermissionOption}
+        removePermissionOption={removePermissionOption}
+      />
+    </>
+  ) : !data?.accessToken ? (
     <Login
-      onClick={getAuth}
+      onClick={start}
       permissionOptions={permissionOptions}
       addPermissionOption={addPermissionOption}
       removePermissionOption={removePermissionOption}
     />
+  ) : !SpotifyConfig.userToken ? (
+    <Loading text="Logging in" />
   ) : (
     <PermissionOptionsStore.Provider value={{ permissions: permissionsOptionsSet, logout }}>
       <Suspense fallback={<Loading />}>

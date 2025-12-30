@@ -73,7 +73,9 @@ const Login = ({
                 permissionOptions.length === 1 &&
                 !permissionOptions.includes("read-saved-tracks-episodes")
               }
-              onChange={(isChecked) => (isChecked ? addPermissionOption("playlists") : removePermissionOption("playlists"))}
+              onChange={(isChecked) =>
+                isChecked ? addPermissionOption("playlists") : removePermissionOption("playlists")
+              }
             />
             <span>Read/Modify Followed Playlists</span>
           </label>
@@ -81,7 +83,11 @@ const Login = ({
         <div className="read-saved-tracks">
           <label>
             <Checkbox
-              checked={permissionOptions.includes("read-saved-tracks-episodes") || permissionOptions.includes("shows") || permissionOptions.includes("albums")}
+              checked={
+                permissionOptions.includes("read-saved-tracks-episodes") ||
+                permissionOptions.includes("shows") ||
+                permissionOptions.includes("albums")
+              }
               disabled={permissionOptions.includes("shows") || permissionOptions.includes("albums")}
               onChange={(isChecked) =>
                 isChecked
